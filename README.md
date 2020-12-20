@@ -109,7 +109,7 @@ Bookshelf, 2019).
 - [ ] Support for smooth triangles in Wavefront OBJ files
 - [ ] Demo
 
-### Constructive Solid Geometry (GCS)
+### Constructive Solid Geometry (CSG)
 - [ ] CSG
 - [ ] Coloring of CSG shapes
 - [ ] Demo
