@@ -1,5 +1,5 @@
 # Copyright (c) 2020 Stefan Holdermans.
-#  Licensed under the MIT License.
+# Licensed under the MIT License.
 
 """Setup script for pyray."""
 
