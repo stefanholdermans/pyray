@@ -10,7 +10,7 @@ Bookshelf, 2019).
 ## Backlog
 
 ### Tuples, Points, and Vectors
-- [ ] Tuples
+- [x] Tuples
 - [ ] Tuple operations
 - [ ] Demo
 
