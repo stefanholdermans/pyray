@@ -11,27 +11,23 @@ import pyray
 class TestTuples(unittest.TestCase):
     """Test case for tuples, points, and vectors."""
 
-    def test_tuple_is_point(self):
-        """Assert that a tuple with w=1 is a point."""
+    def test_tuple(self):
+        """Assert that tuples have x, y, z, and w components."""
         a = pyray.Tuple(4.3, -4.2, 3.1, 1.0)
-
         self.assertEqual(4.3, a.x)
         self.assertEqual(-4.2, a.y)
         self.assertEqual(3.1, a.z)
         self.assertEqual(1.0, a.w)
 
+    def test_tuple_is_point(self):
+        """Assert that a tuple with w=1 is a point."""
+        a = pyray.Tuple(4.3, -4.2, 3.1, 1.0)
         self.assertTrue(a.is_point())
         self.assertFalse(a.is_vector())
 
     def test_tuple_is_vector(self):
         """Assert that a tuple with w=0 is a vector."""
         a = pyray.Tuple(4.3, -4.2, 3.1, 0.0)
-
-        self.assertEqual(4.3, a.x)
-        self.assertEqual(-4.2, a.y)
-        self.assertEqual(3.1, a.z)
-        self.assertEqual(0.0, a.w)
-
         self.assertFalse(a.is_point())
         self.assertTrue(a.is_vector())
 
