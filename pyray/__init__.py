@@ -3,4 +3,4 @@
 
 """A photorealistic 3D renderer."""
 
-from .tuples import *
+from .tuples import Tuple, point, vector
