@@ -11,7 +11,7 @@ Bookshelf, 2019).
 
 ### Tuples, Points, and Vectors
 - [x] ~~Tuples~~
-- [ ] Tuple operations
+- [x] ~~Tuple operations~~
 - [ ] Demo
 
 ### Drawing on a Canvas
