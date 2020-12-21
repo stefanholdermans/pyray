@@ -10,11 +10,10 @@ from dataclasses import dataclass
 class Tuple:
     """Tuples."""
 
-    def __init__(self, x: float, y: float, z: float, w: float):
-        self.x = x
-        self.y = y
-        self.z = z
-        self.w = w
+    x: float
+    y: float
+    z: float
+    w: float
 
     def is_point(self) -> bool:
         """Return whether the tuple is a point."""
