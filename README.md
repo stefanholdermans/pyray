@@ -15,7 +15,7 @@ Bookshelf, 2019).
 - [x] ~~Demo~~
 
 ### Drawing on a Canvas
-- [ ] Colors
+- [x] ~~Colors~~
 - [ ] Color operations
 - [ ] Canvas creation
 - [ ] Canvas persistence
