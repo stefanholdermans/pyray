@@ -12,7 +12,7 @@ import numbers
 
 @dataclass
 class Tuple:
-    """Tuples."""
+    """A tuple."""
 
     x: float
     y: float
