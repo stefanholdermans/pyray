@@ -9,7 +9,7 @@ Bookshelf, 2019).
 
 ## Backlog
 
-### Tuples, Points, and Vectors
+### ~~Tuples, Points, and Vectors~~
 - [x] ~~Tuples~~
 - [x] ~~Tuple operations~~
 - [x] ~~Demo~~
