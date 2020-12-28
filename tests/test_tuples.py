@@ -44,6 +44,7 @@ class TestTuples(unittest.TestCase):
 
 
 class TestTupleOperations(unittest.TestCase):
+    #pylint: disable=too-many-public-methods
     """Test case for tuple operations."""
 
     def test_adding_tuples(self):
