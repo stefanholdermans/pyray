@@ -12,7 +12,7 @@ Bookshelf, 2019).
 ### Tuples, Points, and Vectors
 - [x] ~~Tuples~~
 - [x] ~~Tuple operations~~
-- [ ] Demo
+- [x] ~~Demo~~
 
 ### Drawing on a Canvas
 - [ ] Colors
