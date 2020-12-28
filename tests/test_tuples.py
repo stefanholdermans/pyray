@@ -85,13 +85,13 @@ class TestTupleOperations(unittest.TestCase):
         """Test multiplying a tuple by a scalar."""
         a = pyray.Tuple(1.0, -2.0, 3.0, -4.0)
         self.assertTuplesAlmostEqual(
-            pyray.Tuple(3.5, -7.0, 10.5, -14.0), a * 3.5)
+            pyray.Tuple(3.5, -7.0, 10.5, -14.0), 3.5 * a)
 
     def test_multiplying_scalar_by_tuple(self):
         """Test multiplying a scalar by a tuple."""
         a = pyray.Tuple(1.0, -2.0, 3.0, -4.0)
         self.assertTuplesAlmostEqual(
-            pyray.Tuple(3.5, -7.0, 10.5, -14.0), 3.5 * a)
+            pyray.Tuple(3.5, -7.0, 10.5, -14.0), a * 3.5)
 
     def test_multiplying_tuple_by_fraction(self):
         """Test multiplying a tuple by a fraction."""
