@@ -18,7 +18,7 @@ Bookshelf, 2019).
 - [x] ~~Colors~~
 - [x] ~~Color operations~~
 - [x] ~~Canvas creation~~
-- [ ] Canvas persistence
+- [x] ~~Canvas persistence~~
 - [ ] Demo
 
 ### Matrices
