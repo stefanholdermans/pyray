@@ -3,5 +3,6 @@
 
 """A photorealistic 3D renderer."""
 
+from .canvases import Canvas
 from .colors import Color
 from .tuples import Tuple, Point, Vector, point, vector
