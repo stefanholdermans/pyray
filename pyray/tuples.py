@@ -50,7 +50,7 @@ class Tuple:
                 + self.z * other.z
                 + self.w * other.w)
 
-    def cross(self, other: Tuple) -> Tuple:
+    def cross(self: Vector, other: Vector) -> Vector:
         """For vectors, compute the cross product of the tuple with another
         vector.
 
@@ -115,11 +115,15 @@ class Tuple:
         return Tuple(x, y, z, w)
 
 
-def point(x: float, y: float, z: float) -> Tuple:
+Point = Tuple
+Vector = Tuple
+
+
+def point(x: float, y: float, z: float) -> Point:
     """Create a point."""
     return Tuple(x, y, z, 1.0)
 
 
-def vector(x: float, y: float, z: float) -> Tuple:
+def vector(x: float, y: float, z: float) -> Vector:
     """Create a vector."""
     return Tuple(x, y, z, 0.0)
