@@ -8,7 +8,7 @@ from .colors import Color
 
 
 class Canvas:
-    """A rectangular gird of pixels."""
+    """A rectangular grid of pixels."""
 
     _pixels: Dict[Tuple[int, int], Color]
     width: int
