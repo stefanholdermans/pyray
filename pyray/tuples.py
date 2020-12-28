@@ -65,24 +65,24 @@ class Tuple:
         return Tuple(x, y, z, 0.0)
 
     def __add__(self, other):
-        if not isinstance(other, Tuple):
-            return NotImplemented
+        if isinstance(other, Tuple):
+            x = self.x + other.x
+            y = self.y + other.y
+            z = self.z + other.z
+            w = self.w + other.w
+            return Tuple(x, y, z, w)
 
-        x = self.x + other.x
-        y = self.y + other.y
-        z = self.z + other.z
-        w = self.w + other.w
-        return Tuple(x, y, z, w)
+        return NotImplemented
 
     def __sub__(self, other):
-        if not isinstance(other, Tuple):
-            return NotImplemented
+        if isinstance(other, Tuple):
+            x = self.x - other.x
+            y = self.y - other.y
+            z = self.z - other.z
+            w = self.w - other.w
+            return Tuple(x, y, z, w)
 
-        x = self.x - other.x
-        y = self.y - other.y
-        z = self.z - other.z
-        w = self.w - other.w
-        return Tuple(x, y, z, w)
+        return NotImplemented
 
     def __neg__(self):
         x = -self.x
@@ -92,27 +92,27 @@ class Tuple:
         return Tuple(x, y, z, w)
 
     def __mul__(self, scalar):
-        if not isinstance(scalar, numbers.Number):
-            return NotImplemented
+        if isinstance(scalar, numbers.Number):
+            x = self.x * scalar
+            y = self.y * scalar
+            z = self.z * scalar
+            w = self.w * scalar
+            return Tuple(x, y, z, w)
 
-        x = self.x * scalar
-        y = self.y * scalar
-        z = self.z * scalar
-        w = self.w * scalar
-        return Tuple(x, y, z, w)
+        return NotImplemented
 
     def __rmul__(self, scalar):
         return self.__mul__(scalar)
 
     def __truediv__(self, scalar):
-        if not isinstance(scalar, numbers.Number):
-            return NotImplemented
+        if isinstance(scalar, numbers.Number):
+            x = self.x / scalar
+            y = self.y / scalar
+            z = self.z / scalar
+            w = self.w / scalar
+            return Tuple(x, y, z, w)
 
-        x = self.x / scalar
-        y = self.y / scalar
-        z = self.z / scalar
-        w = self.w / scalar
-        return Tuple(x, y, z, w)
+        return NotImplemented
 
 
 Point = Tuple
