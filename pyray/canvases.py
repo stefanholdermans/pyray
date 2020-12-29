@@ -36,7 +36,7 @@ class Canvas:
     def __setitem__(self, pos: Tuple[int, int], color: Color):
         self._pixels[pos] = color
 
-    def to_ppm(self):
+    def to_ppm(self) -> str:
         """Return a PPM-formatted string representation of the canvas."""
         builder = self._PPMBuilder(self)
         builder.construct_header()
