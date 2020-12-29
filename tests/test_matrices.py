@@ -103,3 +103,24 @@ class TestMatrixMultiplication(TestPyray):
                              2.0, 4.0, 8.0, 16.0,
                              4.0, 8.0, 16.0, 32.0])
         self.assert4x4MatricesAlmostEqual(a, a * pyray.Matrix4x4.IDENTITY)
+
+
+class TestMatrixTransposition(TestPyray):
+    """Test case for matrix transposition."""
+
+    def test_matrix_transposition(self):
+        """Test transposing a matrix."""
+        a = pyray.Matrix4x4([0.0, 9.0, 3.0, 0.0,
+                             9.0, 8.0, 0.0, 8.0,
+                             1.0, 8.0, 5.0, 3.0,
+                             0.0, 0.0, 5.0, 8.0])
+        self.assertEqual(pyray.Matrix4x4([0.0, 9.0, 1.0, 0.0,
+                                          9.0, 8.0, 8.0, 0.0,
+                                          3.0, 0.0, 5.0, 5.0,
+                                          0.0, 8.0, 3.0, 8.0]),
+                         a.transposed())
+
+    def test_identity_matrix_transposition(self):
+        """Test transposing the identity matrix."""
+        a = pyray.Matrix4x4.IDENTITY.transposed()
+        self.assertEqual(pyray.Matrix4x4.IDENTITY, a)

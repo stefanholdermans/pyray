@@ -6,7 +6,7 @@
 """Matrices."""
 
 from __future__ import annotations
-from typing import List, Optional, Tuple as Pair
+from typing import Iterator, List, Optional, Tuple as Pair
 from .tuples import Tuple
 
 
@@ -28,6 +28,11 @@ class _Matrix:
         else:
             self._cells = [0.0] * num_rows * num_cols
 
+    def __iter__(self) -> Iterator[Pair[int, int]]:
+        rows = range(self._num_rows)
+        cols = range(self._num_cols)
+        yield from [(row, col) for row in rows for col in cols]
+
     def __getitem__(self, index: Pair[int, int]) -> float:
         row, col = index
         return self._cells[row * self._num_cols + col]
@@ -44,10 +49,9 @@ class _Matrix:
             if self._num_cols != other._num_cols:
                 return False
 
-            for row in range(self._num_rows):
-                for col in range(self._num_cols):
-                    if self[row, col] != other[row, col]:
-                        return False
+            for row, col in self:
+                if self[row, col] != other[row, col]:
+                    return False
 
             return True
 
@@ -71,7 +75,6 @@ class Matrix3x3(_Matrix):
 
 
 class Matrix4x4(_Matrix):
-    # pylint: disable=too-few-public-methods
     """A 4x4 matrix."""
 
     IDENTITY: Matrix4x4
@@ -82,12 +85,11 @@ class Matrix4x4(_Matrix):
     def __mul__(self, other):
         if isinstance(other, Matrix4x4):
             m = Matrix4x4()
-            for row in range(4):
-                for col in range(4):
-                    m[row, col] = (self[row, 0] * other[0, col]
-                                   + self[row, 1] * other[1, col]
-                                   + self[row, 2] * other[2, col]
-                                   + self[row, 3] * other[3, col])
+            for row, col in self:
+                m[row, col] = (self[row, 0] * other[0, col]
+                               + self[row, 1] * other[1, col]
+                               + self[row, 2] * other[2, col]
+                               + self[row, 3] * other[3, col])
             return m
 
         if isinstance(other, Tuple):
@@ -102,6 +104,13 @@ class Matrix4x4(_Matrix):
             return Tuple(x, y, z, w)
 
         return NotImplemented
+
+    def transposed(self) -> Matrix4x4:
+        """Return the transposition of the matrix."""
+        m = Matrix4x4()
+        for row, col in self:
+            m[row, col] = self[col, row]
+        return m
 
 
 Matrix4x4.IDENTITY = Matrix4x4([1.0, 0.0, 0.0, 0.0,
