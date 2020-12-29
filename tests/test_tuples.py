@@ -4,12 +4,11 @@
 """Tests for tuples, points, and vectors."""
 
 import math
-import unittest
-
 import pyray
+from .test_pyray import TestPyray
 
 
-class TestTuples(unittest.TestCase):
+class TestTuples(TestPyray):
     """Test case for tuples, points, and vectors."""
 
     def test_tuple(self):
@@ -43,21 +42,7 @@ class TestTuples(unittest.TestCase):
         self.assertEqual(pyray.Tuple(4.0, -4.0, 3.0, 0.0), v)
 
 
-class TestTupleOperations(unittest.TestCase):
-    """Test case for tuple operations."""
-
-    def assertTuplesAlmostEqual(self, first: pyray.Tuple, second: pyray.Tuple):
-        # pylint: disable=invalid-name
-        """Assert that two tuples are equal as determined by the pointwise
-        differences of their components rounded to 7 decimal places.
-        """
-        self.assertAlmostEqual(first.x, second.x)
-        self.assertAlmostEqual(first.y, second.y)
-        self.assertAlmostEqual(first.z, second.z)
-        self.assertAlmostEqual(first.w, second.w)
-
-
-class TestArithmeticTupleOperations(TestTupleOperations):
+class TestArithmeticTupleOperations(TestPyray):
     """Test case for arithmetic tuple operations."""
 
     def test_adding_tuples(self):
@@ -119,7 +104,7 @@ class TestArithmeticTupleOperations(TestTupleOperations):
         self.assertTuplesAlmostEqual(pyray.Tuple(0.5, -1.0, 1.5, -2.0), a / 2)
 
 
-class TestSpecificTupleOperations(TestTupleOperations):
+class TestSpecificTupleOperations(TestPyray):
     """Test case for specific tuple operations."""
 
     def test_magnitude_of_x_aligned_unit_vector(self):
