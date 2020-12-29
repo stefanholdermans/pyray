@@ -44,8 +44,21 @@ class TestTuples(unittest.TestCase):
 
 
 class TestTupleOperations(unittest.TestCase):
-    #pylint: disable=too-many-public-methods
     """Test case for tuple operations."""
+
+    def assertTuplesAlmostEqual(self, first: pyray.Tuple, second: pyray.Tuple):
+        # pylint: disable=invalid-name
+        """Assert that two objects are equal as determined by the pointwise
+        differences of their components rounded to 7 decimal places.
+        """
+        self.assertAlmostEqual(first.x, second.x)
+        self.assertAlmostEqual(first.y, second.y)
+        self.assertAlmostEqual(first.z, second.z)
+        self.assertAlmostEqual(first.w, second.w)
+
+
+class TestArithmeticTupleOperations(TestTupleOperations):
+    """Test case for arithmetic tuple operations."""
 
     def test_adding_tuples(self):
         """Test adding two tuples."""
@@ -104,6 +117,10 @@ class TestTupleOperations(unittest.TestCase):
         """Test dividing a tuple by a scalar."""
         a = pyray.Tuple(1.0, -2.0, 3.0, -4.0)
         self.assertTuplesAlmostEqual(pyray.Tuple(0.5, -1.0, 1.5, -2.0), a / 2)
+
+
+class TestSpecificTupleOperations(TestTupleOperations):
+    """Test case for specific tuple operations."""
 
     def test_magnitude_of_x_aligned_unit_vector(self):
         """Test computing the magnitude of `pyray.vector(1.0, 0.0, 0.0)`."""
@@ -183,13 +200,3 @@ class TestTupleOperations(unittest.TestCase):
         b = pyray.point(2.0, 3.0, 4.0)
         with self.assertRaises(ValueError):
             _ = a.cross(b)
-
-    def assertTuplesAlmostEqual(self, first: pyray.Tuple, second: pyray.Tuple):
-        # pylint: disable=invalid-name
-        """Assert that two objects are equal as determined by the pointwise
-        differences of their components rounded to 7 decimal places.
-        """
-        self.assertAlmostEqual(first.x, second.x)
-        self.assertAlmostEqual(first.y, second.y)
-        self.assertAlmostEqual(first.z, second.z)
-        self.assertAlmostEqual(first.w, second.w)
