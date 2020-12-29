@@ -3,11 +3,11 @@
 
 """Tests for canvases."""
 
-import unittest
 import pyray
+from .test_pyray import TestPyray
 
 
-class TestCanvasCreation(unittest.TestCase):
+class TestCanvasCreation(TestPyray):
     """Test case for canvas creation."""
 
     def test_canvas(self):
@@ -37,7 +37,7 @@ class TestCanvasCreation(unittest.TestCase):
         self.assertEqual(red, c[2, 3])
 
 
-class TestCanvasPersistence(unittest.TestCase):
+class TestCanvasPersistence(TestPyray):
     """Test case for canvas persistence."""
 
     def test_ppm_header(self):

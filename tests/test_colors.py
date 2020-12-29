@@ -3,11 +3,11 @@
 
 """Tests for colors."""
 
-import unittest
 import pyray
+from .test_pyray import TestPyray
 
 
-class TestColors(unittest.TestCase):
+class TestColors(TestPyray):
     """Test case for colors."""
 
     def test_color(self):
@@ -18,7 +18,7 @@ class TestColors(unittest.TestCase):
         self.assertEqual(1.7, c.blue)
 
 
-class TestColorOperations(unittest.TestCase):
+class TestColorOperations(TestPyray):
     """Test case for color operations."""
 
     def test_adding_colors(self):
