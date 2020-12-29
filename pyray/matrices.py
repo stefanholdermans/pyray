@@ -108,7 +108,7 @@ class Matrix4x4(_Matrix):
     def transposed(self) -> Matrix4x4:
         """Return the transposition of the matrix."""
         m = Matrix4x4()
-        for row, col in self:
+        for row, col in m:
             m[row, col] = self[col, row]
         return m
 
