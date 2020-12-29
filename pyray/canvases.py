@@ -6,7 +6,7 @@
 from __future__ import annotations
 
 import textwrap
-from typing import Dict, List, Tuple
+from typing import Dict, Iterator, List, Tuple
 
 from .colors import Color
 
@@ -27,7 +27,7 @@ class Canvas:
                   for y in range(height)]
         self._pixels = dict(pixels)
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Tuple[int, int]]:
         yield from self._pixels
 
     def __getitem__(self, pos: Tuple[int, int]) -> Color:
