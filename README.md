@@ -24,7 +24,7 @@ Bookshelf, 2019).
 ### Matrices
 - [x] ~~Matrix creation~~
 - [x] ~~Matrix multiplication~~
-- [ ] Identity matrices
+- [x] ~~Identity matrices~~
 - [ ] Matrix transposition
 - [ ] Matrix inversion
 

@@ -95,3 +95,11 @@ class TestMatrixMultiplication(TestPyray):
                              0.0, 0.0, 0.0, 1.0])
         b = pyray.Tuple(1.0, 2.0, 3.0, 1.0)
         self.assertTuplesAlmostEqual(pyray.Tuple(18.0, 24.0, 33.0, 1.0), a * b)
+
+    def test_multiplying_by_identity_matrix(self):
+        """Test multiplying a matrix by the identity matrix."""
+        a = pyray.Matrix4x4([0.0, 1.0, 2.0, 4.0,
+                             1.0, 2.0, 4.0, 8.0,
+                             2.0, 4.0, 8.0, 16.0,
+                             4.0, 8.0, 16.0, 32.0])
+        self.assert4x4MatricesAlmostEqual(a, a * pyray.Matrix4x4.IDENTITY)

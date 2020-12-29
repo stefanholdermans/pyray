@@ -5,6 +5,7 @@
 
 """Matrices."""
 
+from __future__ import annotations
 from typing import List, Optional, Tuple as Pair
 from .tuples import Tuple
 
@@ -73,6 +74,8 @@ class Matrix4x4(_Matrix):
     # pylint: disable=too-few-public-methods
     """A 4x4 matrix."""
 
+    IDENTITY: Matrix4x4
+
     def __init__(self, cells: Optional[List[float]] = None):
         super().__init__(4, 4, cells)
 
@@ -99,3 +102,9 @@ class Matrix4x4(_Matrix):
             return Tuple(x, y, z, w)
 
         return NotImplemented
+
+
+Matrix4x4.IDENTITY = Matrix4x4([1.0, 0.0, 0.0, 0.0,
+                                0.0, 1.0, 0.0, 0.0,
+                                0.0, 0.0, 1.0, 0.0,
+                                0.0, 0.0, 0.0, 1.0])
