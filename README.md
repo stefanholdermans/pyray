@@ -22,7 +22,7 @@ Bookshelf, 2019).
 - [ ] Demo
 
 ### Matrices
-- [ ] Matrix creation
+- [x] ~~Matrix creation~~
 - [ ] Matrix multiplication
 - [ ] Identity matrices
 - [ ] Matrix transposition
