@@ -34,7 +34,7 @@ class Tuple:
                          + self.z * self.z
                          + self.w * self.w)
 
-    def normalize(self) -> Tuple:
+    def normalized(self) -> Tuple:
         """Normalize the tuple."""
         magnitude = self.magnitude()
         x = self.x / magnitude

@@ -137,12 +137,12 @@ class TestSpecificTupleOperations(TestPyray):
         (1.0, 1.0, 0).
         """
         v = pyray.vector(4.0, 0.0, 0.0)
-        self.assertTuplesAlmostEqual(pyray.vector(1.0, 0, 0), v.normalize())
+        self.assertTuplesAlmostEqual(pyray.vector(1.0, 0, 0), v.normalized())
 
     def test_normalizing_nonaligned_vector(self):
         """Test normalizing `pyray.vector(1.0, 2.0, 3.0)`."""
         v1 = pyray.vector(1.0, 2.0, 3.0)
-        v2 = v1.normalize()
+        v2 = v1.normalized()
         self.assertTuplesAlmostEqual(
             pyray.vector(1.0 / math.sqrt(14.0),
                          2.0 / math.sqrt(14.0),
@@ -152,7 +152,7 @@ class TestSpecificTupleOperations(TestPyray):
     def test_magnitude_of_normalized_vector(self):
         """Test the magnitude of a normalized vector."""
         v = pyray.vector(1.0, 2.0, 3.0)
-        norm = v.normalize()
+        norm = v.normalized()
         self.assertAlmostEqual(1.0, norm.magnitude())
 
     def test_dot_product(self):
