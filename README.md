@@ -27,7 +27,6 @@ Bookshelf, 2019).
 - [ ] Identity matrices
 - [ ] Matrix transposition
 - [ ] Matrix inversion
-- [ ] Demo
 
 ### Matrix Transformations
 - [ ] Translation
