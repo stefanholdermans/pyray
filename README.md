@@ -14,12 +14,12 @@ Bookshelf, 2019).
 - [x] ~~Tuple operations~~
 - [x] ~~Demo~~
 
-### Drawing on a Canvas
+### ~~Drawing on a Canvas~~
 - [x] ~~Colors~~
 - [x] ~~Color operations~~
 - [x] ~~Canvas creation~~
 - [x] ~~Canvas persistence~~
-- [ ] Demo
+- [x] ~~Demo~~
 
 ### Matrices
 - [x] ~~Matrix creation~~
