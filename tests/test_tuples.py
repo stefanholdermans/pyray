@@ -48,7 +48,7 @@ class TestTupleOperations(unittest.TestCase):
 
     def assertTuplesAlmostEqual(self, first: pyray.Tuple, second: pyray.Tuple):
         # pylint: disable=invalid-name
-        """Assert that two objects are equal as determined by the pointwise
+        """Assert that two tuples are equal as determined by the pointwise
         differences of their components rounded to 7 decimal places.
         """
         self.assertAlmostEqual(first.x, second.x)
