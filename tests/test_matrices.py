@@ -66,6 +66,10 @@ class TestMatrices(TestPyray):
                              4.0, 3.0, 2.0, 1.0])
         self.assertNotEqual(a, b)
 
+
+class TestMatrixMultiplication(TestPyray):
+    """Test case for matrix multiplication."""
+
     def test_matrix_multiplication(self):
         """Test multiplying two matrices."""
         a = pyray.Matrix4x4([1.0, 2.0, 3.0, 4.0,
