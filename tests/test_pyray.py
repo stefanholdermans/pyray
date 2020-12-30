@@ -20,12 +20,13 @@ class TestPyray(unittest.TestCase):
         self.assertAlmostEqual(first.z, second.z)
         self.assertAlmostEqual(first.w, second.w)
 
-    def assert4x4MatricesAlmostEqual(
-            self, first: pyray.Matrix4x4, second: pyray.Matrix4x4):
+    def assertMatricesAlmostEqual(
+            self, first: pyray.Matrix, second: pyray.Matrix):
         # pylint: disable=invalid-name
-        """Assert that two 4x4 matrices are equal as determined by the pointwise
+        """Assert that two matrices are equal as determined by the pointwise
         differences of their cells rounded to 7 decimal places.
         """
-        for row in range(4):
-            for col in range(4):
-                self.assertAlmostEqual(first[row, col], second[row, col])
+        self.assertEqual(first.dim, second.dim)
+
+        for row, col in first:
+            self.assertAlmostEqual(first[row, col], second[row, col])

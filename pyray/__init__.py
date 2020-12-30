@@ -5,5 +5,5 @@
 
 from .canvases import Canvas
 from .colors import Color
-from .matrices import Matrix2x2, Matrix3x3, Matrix4x4
+from .matrices import Matrix, DimensionError, matrix2x2, matrix3x3, matrix4x4
 from .tuples import Tuple, Point, Vector, point, vector
