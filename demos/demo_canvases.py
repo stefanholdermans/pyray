@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Stefan Holdermans.
+# Copyright (c) 2020-2021 Stefan Holdermans.
 # Licensed under the MIT License.
 
 """Plotting the course of a virtual projectile on a canvas."""
