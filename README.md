@@ -21,12 +21,12 @@ Bookshelf, 2019).
 - [x] ~~Canvas persistence~~
 - [x] ~~Demo~~
 
-### Matrices
+### ~~Matrices~~
 - [x] ~~Matrix creation~~
 - [x] ~~Matrix multiplication~~
 - [x] ~~Identity matrices~~
 - [x] ~~Matrix transposition~~
-- [ ] Matrix inversion
+- [x] ~~Matrix inversion~~
 
 ### Matrix Transformations
 - [ ] Translation
