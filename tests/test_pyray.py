@@ -42,7 +42,7 @@ class TestPyray(unittest.TestCase):
         """Assert that two matrices are equal as determined by the pointwise
         differences of their cells rounded to 5 decimal places.
         """
-        self.assertEqual(first.dim, second.dim)
+        self.assertEqual(first.order, second.order)
 
         for row, col in first:
             self.assertFloatsAlmostEqual(first[row, col], second[row, col])

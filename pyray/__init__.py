@@ -7,4 +7,4 @@ from .tuples import Tuple, Point, Vector, point, vector
 from .canvases import Canvas
 from .colors import Color
 from .matrices import \
-    Matrix, DimensionError, NotInvertibleError, matrix2x2, matrix3x3, matrix4x4
+    Matrix, OrderError, NotInvertibleError, matrix2x2, matrix3x3, matrix4x4

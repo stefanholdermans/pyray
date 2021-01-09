@@ -12,59 +12,52 @@ from .tuples import Tuple
 
 class Matrix():
     """A square matrix, i.e., a matrix with the same number of rows and columns.
-
-    A square matrix of dimensions 1x1 is referred to as a "small" square matrix
-    and is degenerate in the sense that it does not support certain operations
-    such as computing its minors or cofactors.
     """
 
     _dim: int
     _cells: List[float]
 
-    def __init__(self, dim: int, cells: Optional[List[float]] = None):
-        if dim < 1:
+    def __init__(self, order: int, cells: Optional[List[float]] = None):
+        if order < 1:
             raise ValueError
 
-        self._dim = dim
-        self._cells = [0.0] * dim * dim
+        self._order = order
+        self._cells = [0.0] * order * order
 
         if cells is not None:
-            self._init_cells(dim, cells)
+            self._init_cells(cells)
 
-    def _init_cells(self, dim: int, cells: List[float]):
-        if len(cells) != dim * dim:
+    def _init_cells(self, cells: List[float]):
+        if len(cells) != self.order * self.order:
             raise ValueError
 
         self._cells = cells
 
     @property
-    def dim(self):
-        """Return the dimension of the matrix."""
-        return self._dim
+    def order(self):
+        """Return the order of the matrix."""
+        return self._order
 
-    def _is_small(self) -> bool:
-        return self.dim == 1
-
-    def _check_not_small(self):
-        if self._is_small():
-            raise DimensionError
+    def _check_not_first_order(self):
+        if self.order == 1:
+            raise OrderError
 
     def __iter__(self) -> Iterator[Pair[int, int]]:
-        rows = range(self.dim)
-        cols = range(self.dim)
+        rows = range(self.order)
+        cols = range(self.order)
         yield from [(row, col) for row in rows for col in cols]
 
     def __getitem__(self, index: Pair[int, int]) -> float:
         row, col = index
-        return self._cells[row * self.dim + col]
+        return self._cells[row * self.order + col]
 
     def __setitem__(self, index: Pair[int, int], cell: float):
         row, col = index
-        self._cells[row * self.dim + col] = cell
+        self._cells[row * self.order + col] = cell
 
     def __eq__(self, other):
         if isinstance(other, Matrix):
-            if self.dim != other.dim:
+            if self.order != other.order:
                 return False
 
             for row, col in self:
@@ -77,18 +70,19 @@ class Matrix():
 
     def __mul__(self, other):
         if isinstance(other, Matrix):
-            if self.dim != other.dim:
-                raise DimensionError
+            if self.order != other.order:
+                raise OrderError
 
-            m = Matrix(self.dim)
+            m = Matrix(self.order)
             for row, col in self:
-                prods = [self[row, i] * other[i, col] for i in range(self.dim)]
+                prods = [self[row, i] * other[i, col]
+                         for i in range(self.order)]
                 m[row, col] = sum(prods)
             return m
 
         if isinstance(other, Tuple):
-            if self.dim != 4:
-                raise DimensionError
+            if self.order != 4:
+                raise OrderError
 
             x = (self[0, 0] * other.x + self[0, 1] * other.y
                  + self[0, 2] * other.z + self[0, 3] * other.w)
@@ -103,16 +97,16 @@ class Matrix():
         return NotImplemented
 
     @staticmethod
-    def identity(dim: int) -> Matrix:
+    def identity(order: int) -> Matrix:
         """Return a square identity matrix."""
-        m = Matrix(dim)
-        for i in range(dim):
+        m = Matrix(order)
+        for i in range(order):
             m[i, i] = 1.0
         return m
 
     def transposed(self) -> Matrix:
         """Return the transposition of the matrix."""
-        m = Matrix(self.dim)
+        m = Matrix(self.order)
         for row, col in m:
             m[row, col] = self[col, row]
         return m
@@ -121,10 +115,10 @@ class Matrix():
         """Return the submatrix obtained by removing the specified row and
         column.
 
-        Raises `DimensionError` if the matrix is small.
+        Raises `OrderError` if the matrix is first-order.
         """
-        self._check_not_small()
-        submatrix = Matrix(self.dim - 1)
+        self._check_not_first_order()
+        submatrix = Matrix(self.order - 1)
         for dst_row, dst_col in submatrix:
             src_row = dst_row if row > dst_row else dst_row + 1
             src_col = dst_col if col > dst_col else dst_col + 1
@@ -134,27 +128,27 @@ class Matrix():
     def minor(self, row: int, col: int) -> float:
         """Return the minor of the matrix at the specified index.
 
-        Raises `DimensionError` if the matrix is small.
+        Raises `OrderError` if the matrix is first-order.
         """
-        self._check_not_small()
+        self._check_not_first_order()
         return self.submatrix(row, col).determinant()
 
     def cofactor(self, row: int, col: int) -> float:
         """Return the cofactor of the matrix at the specified index.
 
-        Raises `DimensionError` if the matrix is a small.
+        Raises `OrderError` if the matrix is first-order.
         """
-        self._check_not_small()
+        self._check_not_first_order()
         minor = self.minor(row, col)
         return minor if (row + col) % 2 == 0 else -minor
 
     def determinant(self) -> float:
         """Return the determinant of the matrix."""
-        if self._is_small():
+        if self.order == 1:
             return self[0, 0]
 
         acc = 0.0
-        for col in range(self.dim):
+        for col in range(self.order):
             acc += self[0, col] * self.cofactor(0, col)
         return acc
 
@@ -171,16 +165,16 @@ class Matrix():
             raise NotInvertibleError()
 
         det = self.determinant()
-        m = Matrix(self.dim)
+        m = Matrix(self.order)
         for row, col in m:
-            c = self.cofactor(row, col) if not self._is_small() else 1.0
+            c = self.cofactor(row, col) if not self.order == 1 else 1.0
             m[col, row] = c / det
         return m
 
 
-class DimensionError(Exception):
-    """Raised when a matrix operation is invoked on a matrix of inappropriate
-    dimensions.
+class OrderError(Exception):
+    """Raised when a matrix operation is invoked on a matrix of incompatible
+    order.
     """
 
 
