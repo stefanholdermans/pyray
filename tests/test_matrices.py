@@ -270,3 +270,26 @@ class TestMatrixInversion(TestPyray):
                              6.0, -2.0, 0.0, 5.0])
         c = a * b
         self.assertMatricesAlmostEqual(a, c * b.inverse())
+
+
+class TestMatrixTransformation(TestPyray):
+    """Test case for matrix inversion."""
+
+    def test_multiplying_by_translation_matrix(self):
+        """Test multiplying by a translation matrix."""
+        transform = pyray.translation(5.0, -3.0, 2.0)
+        p = pyray.point(-3.0, 4.0, 5.0)
+        self.assertTuplesAlmostEqual(pyray.point(2.0, 1.0, 7.0), transform * p)
+
+    def test_multiplying_by_inverse_of_translation_matrix(self):
+        """Test multiplying by the inverse of a translation matrix."""
+        transform = pyray.translation(5.0, -3.0, 2.0)
+        inv = transform.inverse()
+        p = pyray.point(-3.0, 4.0, 5.0)
+        self.assertTuplesAlmostEqual(pyray.point(-8.0, 7.0, 3.0), inv * p)
+
+    def test_vector_translation(self):
+        """Assert that translation does not affect vectors."""
+        transform = pyray.translation(5.0, -3.0, 2.0)
+        v = pyray.vector(-3.0, 4.0, 5.0)
+        self.assertEqual(v, transform * v)

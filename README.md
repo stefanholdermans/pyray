@@ -29,7 +29,7 @@ Bookshelf, 2019).
 - [x] ~~Matrix inversion~~
 
 ### Matrix Transformations
-- [ ] Translation
+- [x] ~~Translation~~
 - [ ] Scaling
 - [ ] Rotation
 - [ ] Shearing

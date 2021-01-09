@@ -204,3 +204,13 @@ def matrix4x4(cells: List[float]) -> Matrix:
     Raise `ValueError` if `cells` provide too few or too many cell values.
     """
     return Matrix(4, cells)
+
+
+def translation(x: float, y: float, z: float) -> Matrix:
+    """Construct a translation matrix."""
+    _ = x, y, z  # Unused
+    transform = Matrix.identity(4)
+    transform[0, 3] = x
+    transform[1, 3] = y
+    transform[2, 3] = z
+    return transform
