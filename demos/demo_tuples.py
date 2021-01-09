@@ -57,7 +57,7 @@ def main():
     env = Environment(gravity, wind)
 
     position = pyray.point(0.0, 1.0, 0.0)
-    velocity = pyray.vector(1.0, 1.0, 0.0).normalize()
+    velocity = pyray.vector(1.0, 1.0, 0.0).normalized()
     proj = Projectile(position, velocity)
 
     run(env, proj)
