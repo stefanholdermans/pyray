@@ -208,9 +208,17 @@ def matrix4x4(cells: List[float]) -> Matrix:
 
 def translation(x: float, y: float, z: float) -> Matrix:
     """Construct a translation matrix."""
-    _ = x, y, z  # Unused
     transform = Matrix.identity(4)
     transform[0, 3] = x
     transform[1, 3] = y
     transform[2, 3] = z
+    return transform
+
+
+def scaling(x: float, y: float, z: float) -> Matrix:
+    """Construct a scaling matrix."""
+    transform = Matrix.identity(4)
+    transform[0, 0] = x
+    transform[1, 1] = y
+    transform[2, 2] = z
     return transform

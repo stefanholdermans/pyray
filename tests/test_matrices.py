@@ -275,21 +275,43 @@ class TestMatrixInversion(TestPyray):
 class TestMatrixTransformation(TestPyray):
     """Test case for matrix inversion."""
 
-    def test_multiplying_by_translation_matrix(self):
+    def test_point_translation(self):
         """Test multiplying by a translation matrix."""
         transform = pyray.translation(5.0, -3.0, 2.0)
         p = pyray.point(-3.0, 4.0, 5.0)
         self.assertTuplesAlmostEqual(pyray.point(2.0, 1.0, 7.0), transform * p)
-
-    def test_multiplying_by_inverse_of_translation_matrix(self):
-        """Test multiplying by the inverse of a translation matrix."""
-        transform = pyray.translation(5.0, -3.0, 2.0)
-        inv = transform.inverse()
-        p = pyray.point(-3.0, 4.0, 5.0)
-        self.assertTuplesAlmostEqual(pyray.point(-8.0, 7.0, 3.0), inv * p)
 
     def test_vector_translation(self):
         """Assert that translation does not affect vectors."""
         transform = pyray.translation(5.0, -3.0, 2.0)
         v = pyray.vector(-3.0, 4.0, 5.0)
         self.assertEqual(v, transform * v)
+
+    def test_inverse_translation(self):
+        """Test multiplying by the inverse of a translation matrix."""
+        transform = pyray.translation(5.0, -3.0, 2.0)
+        inv = transform.inverse()
+        p = pyray.point(-3.0, 4.0, 5.0)
+        self.assertTuplesAlmostEqual(pyray.point(-8.0, 7.0, 3.0), inv * p)
+
+    def test_point_scaling(self):
+        """Test applying a scaling matrix to a point."""
+        transform = pyray.scaling(2.0, 3.0, 4.0)
+        p = pyray.point(-4.0, 6.0, 8.0)
+        self.assertTuplesAlmostEqual(pyray.point(-8.0, 18.0, 32.0),
+                                     transform * p)
+
+    def test_vector_scaling(self):
+        """Test applying a scaling matrix to a vector."""
+        transform = pyray.scaling(2.0, 3.0, 4.0)
+        v = pyray.vector(-4.0, 6.0, 8.0)
+        self.assertTuplesAlmostEqual(pyray.vector(-8.0, 18.0, 32.0),
+                                     transform * v)
+
+    def test_inverse_scaling(self):
+        """Test multiplying by the inverse of a scaling matrix."""
+        transform = pyray.scaling(2.0, 3.0, 4.0)
+        inv = transform.inverse()
+        v = pyray.vector(-4.0, 6.0, 8.0)
+        self.assertTuplesAlmostEqual(pyray.vector(-2.0, 2.0, 2.0),
+                                     inv * v)
