@@ -150,7 +150,7 @@ class Matrix():
 
     def determinant(self) -> float:
         """Return the determinant of the matrix."""
-        if self.dim == 1:
+        if self._is_small():
             return self[0, 0]
 
         acc = 0.0
@@ -158,11 +158,34 @@ class Matrix():
             acc += self[0, col] * self.cofactor(0, col)
         return acc
 
+    def is_invertible(self) -> bool:
+        """Return whether the matrix is invertible."""
+        return self.determinant() != 0.0
+
+    def inverse(self) -> Matrix:
+        """Return the inverse of the matrix.
+
+        Raises `NotInvertibleError` if the matrix is not invertible.
+        """
+        if not self.is_invertible():
+            raise NotInvertibleError()
+
+        det = self.determinant()
+        m = Matrix(self.dim)
+        for row, col in m:
+            c = self.cofactor(row, col) if not self._is_small() else 1.0
+            m[col, row] = c / det
+        return m
+
 
 class DimensionError(Exception):
     """Raised when a matrix operation is invoked on a matrix of inappropriate
     dimensions.
     """
+
+
+class NotInvertibleError(Exception):
+    """Raised when a matrix cannot be inverted."""
 
 
 def matrix2x2(cells: List[float]) -> Matrix:

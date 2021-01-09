@@ -133,7 +133,7 @@ class TestMatrixInversion(TestPyray):
         """Test calculating the determinant of a 2x2 matrix."""
         a = pyray.matrix2x2([1.0, 5.0,
                              -3.0, 2.0])
-        self.assertAlmostEqual(17.0, a.determinant())
+        self.assertFloatsAlmostEqual(17.0, a.determinant())
 
     def test_submatrix_of_3x3_matrix(self):
         """Assert that a submatrix of a 3x3 matrix is a 2x2 matrix."""
@@ -160,22 +160,22 @@ class TestMatrixInversion(TestPyray):
         a = pyray.matrix3x3([3.0, 5.0, 0.0,
                              2.0, -1.0, -7.0,
                              6.0, -1.0, 5.0])
-        self.assertAlmostEqual(25.0, a.minor(1, 0))
+        self.assertFloatsAlmostEqual(25.0, a.minor(1, 0))
 
     def test_cofactor_of_3x3_matrix(self):
         """Test calculating a cofactor of a 3x3 matrix."""
         a = pyray.matrix3x3([3.0, 5.0, 0.0,
                              2.0, -1.0, -7.0,
                              6.0, -1.0, 5.0])
-        self.assertAlmostEqual(-12.0, a.cofactor(0, 0))
-        self.assertAlmostEqual(-25.0, a.cofactor(1, 0))
+        self.assertFloatsAlmostEqual(-12.0, a.cofactor(0, 0))
+        self.assertFloatsAlmostEqual(-25.0, a.cofactor(1, 0))
 
     def test_deteriminant_of_3x3_matrix(self):
         """Test calculating the determinant of a 3x3 matrix."""
         a = pyray.matrix3x3([1.0, 2.0, 6.0,
                              -5.0, 8.0, -4.0,
                              2.0, 6.0, 4.0])
-        self.assertAlmostEqual(-196.0, a.determinant())
+        self.assertFloatsAlmostEqual(-196.0, a.determinant())
 
     def test_minor_of_4x4_matrix(self):
         """Test calculating a minor of a 4x4 matrix."""
@@ -183,8 +183,8 @@ class TestMatrixInversion(TestPyray):
                              -3.0, 1.0, 7.0, 3.0,
                              1.0, 2.0, -9.0, 6.0,
                              -6.0, 7.0, 7.0, -9.0])
-        self.assertAlmostEqual(690.0, a.minor(0, 0))
-        self.assertAlmostEqual(-447.0, a.minor(0, 1))
+        self.assertFloatsAlmostEqual(690.0, a.minor(0, 0))
+        self.assertFloatsAlmostEqual(-447.0, a.minor(0, 1))
 
     def test_cofactor_of_4x4_matrix(self):
         """Test calculating a cofactor of a 4x4 matrix."""
@@ -192,8 +192,8 @@ class TestMatrixInversion(TestPyray):
                              -3.0, 1.0, 7.0, 3.0,
                              1.0, 2.0, -9.0, 6.0,
                              -6.0, 7.0, 7.0, -9.0])
-        self.assertAlmostEqual(690.0, a.cofactor(0, 0))
-        self.assertAlmostEqual(447.0, a.cofactor(0, 1))
+        self.assertFloatsAlmostEqual(690.0, a.cofactor(0, 0))
+        self.assertFloatsAlmostEqual(447.0, a.cofactor(0, 1))
 
     def test_determinant_of_4x4_matrix(self):
         """Test calculating the determinant of a 4x4 matrix."""
@@ -201,4 +201,72 @@ class TestMatrixInversion(TestPyray):
                              -3.0, 1.0, 7.0, 3.0,
                              1.0, 2.0, -9.0, 6.0,
                              -6.0, 7.0, 7.0, -9.0])
-        self.assertAlmostEqual(-4071.0, a.determinant())
+        self.assertFloatsAlmostEqual(-4071.0, a.determinant())
+
+    def test_invertibility(self):
+        """Test testing an invertible matrix for invertibility."""
+        a = pyray.matrix4x4([6.0, 4.0, 4.0, 4.0,
+                             5.0, 5.0, 7.0, 6.0,
+                             4.0, -9.0, 3.0, -7.0,
+                             9.0, 1.0, 7.0, -6.0])
+        self.assertTrue(a.is_invertible())
+
+    def test_noninvertibility(self):
+        """Test testing a noninvertible matrix for invertibility."""
+        a = pyray.matrix4x4([-4.0, 2.0, -2.0, -3.0,
+                             9.0, 6.0, 2.0, 6.0,
+                             0.0, -5.0, 1.0, -5.0,
+                             0.0, 0.0, 0.0, 0.0])
+        self.assertFalse(a.is_invertible())
+
+    def test_inverse_1(self):
+        """Test calculating the inverse of a matrix."""
+        a = pyray.matrix4x4([-5.0, 2.0, 6.0, -8.0,
+                             1.0, -5.0, 1.0, 8.0,
+                             7.0, 7.0, -6.0, -7.0,
+                             1.0, -3.0, 7.0, 4.0])
+        self.assertMatricesAlmostEqual(
+            pyray.matrix4x4([0.21805, 0.45113, 0.24060, -0.04511,
+                             -0.80827, -1.45677, -0.44361, 0.52068,
+                             -0.07895, -0.22368, -0.05263, 0.19737,
+                             -0.52256, -0.81391, -0.30075, 0.30639]),
+            a.inverse())
+
+    def test_inverse_2(self):
+        """Test calculating the inverse of another matrix."""
+        a = pyray.matrix4x4([8.0, -5.0, 9.0, 2.0,
+                             7.0, 5.0, 6.0, 1.0,
+                             -6.0, 0.0, 9.0, 6.0,
+                             -3.0, 0.0, -9.0, -4.0])
+        self.assertMatricesAlmostEqual(
+            pyray.matrix4x4([-0.15385, -0.15385, -0.28205, -0.53846,
+                             -0.07692, 0.12308, 0.02564, 0.03077,
+                             0.35897, 0.35897, 0.43590, 0.92308,
+                             -0.69231, -0.69231, -0.76923, -1.92308]),
+            a.inverse())
+
+    def test_inverse_3(self):
+        """Test calculating the inverse of a third matrix."""
+        a = pyray.matrix4x4([9.0, 3.0, 0.0, 9.0,
+                             -5.0, -2.0, -6.0, -3.0,
+                             -4.0,  9.0,  6.0,  4.0,
+                             -7.0,  6.0,  6.0,  2.0])
+        self.assertMatricesAlmostEqual(
+            pyray.matrix4x4([-0.04074, -0.07778, 0.14444, -0.22222,
+                             -0.07778,  0.03333, 0.36667, -0.33333,
+                             -0.02901, -0.14630, -0.10926, 0.12963,
+                             0.17778,  0.06667, -0.26667, 0.33333]),
+            a.inverse())
+
+    def test_multiplying_product_by_inverse(self):
+        """Test multiplying a product by its inverse."""
+        a = pyray.matrix4x4([3.0, -9.0, 7.0, 3.0,
+                             3.0, -8.0, 2.0, -9,
+                             -4.0, 4.0, 4.0, 1.0,
+                             -6.0, 5.0, -1.0, 1.0])
+        b = pyray.matrix4x4([8.0, 2.0, 2.0, 2.0,
+                             3.0, -1.0, 7.0, 0.0,
+                             7.0, 0.0, 5.0, 4.0,
+                             6.0, -2.0, 0.0, 5.0])
+        c = a * b
+        self.assertMatricesAlmostEqual(a, c * b.inverse())

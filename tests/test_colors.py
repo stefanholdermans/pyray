@@ -48,12 +48,3 @@ class TestColorOperations(TestPyray):
         c1 = pyray.Color(1.0, 0.2, 0.4)
         c2 = pyray.Color(0.9, 1.0, 0.1)
         self.assertColorsAlmostEqual(pyray.Color(0.9, 0.2, 0.04), c1 * c2)
-
-    def assertColorsAlmostEqual(self, first: pyray.Color, second: pyray.Color):
-        # pylint: disable=invalid-name
-        """Assert that two colors are equal as determined by the pointwise
-        differences of their components rounded to 7 decimal places.
-        """
-        self.assertAlmostEqual(first.red, second.red)
-        self.assertAlmostEqual(first.green, second.green)
-        self.assertAlmostEqual(first.blue, second.blue)

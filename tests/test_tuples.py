@@ -110,27 +110,27 @@ class TestSpecificTupleOperations(TestPyray):
     def test_magnitude_of_x_aligned_unit_vector(self):
         """Test computing the magnitude of `pyray.vector(1.0, 0.0, 0.0)`."""
         v = pyray.vector(1.0, 0.0, 0.0)
-        self.assertAlmostEqual(1.0, v.magnitude())
+        self.assertFloatsAlmostEqual(1.0, v.magnitude())
 
     def test_magnitude_of_y_aligned_unit_vector(self):
         """Test computing the magnitude of `pyray.vector(0.0, 1.0, 0.0)`."""
         v = pyray.vector(0.0, 1.0, 0.0)
-        self.assertAlmostEqual(1.0, v.magnitude())
+        self.assertFloatsAlmostEqual(1.0, v.magnitude())
 
     def test_magnitude_of_z_aligned_unit_vector(self):
         """Test computing the magnitude of `pyray.vector(0.0, 0.0, 1.0)`."""
         v = pyray.vector(0.0, 0.0, 1.0)
-        self.assertAlmostEqual(1.0, v.magnitude())
+        self.assertFloatsAlmostEqual(1.0, v.magnitude())
 
     def test_magnitude_of_positive_vector(self):
         """Test computing the magnitude of `pyray.vector(1.0, 2.0, 3.0)`."""
         v = pyray.vector(1.0, 2.0, 3.0)
-        self.assertAlmostEqual(math.sqrt(14.0), v.magnitude())
+        self.assertFloatsAlmostEqual(math.sqrt(14.0), v.magnitude())
 
     def test_magnitude_of_negative_vector(self):
         """Test computing the magnitude of `pyray.vector(-1.0, -2.0, -3.0)`."""
         v = pyray.vector(-1.0, -2.0, -3.0)
-        self.assertAlmostEqual(math.sqrt(14.0), v.magnitude())
+        self.assertFloatsAlmostEqual(math.sqrt(14.0), v.magnitude())
 
     def test_normalizing_aligned_vector(self):
         """Assert that normalizing `pyray.vector(4.0, 0.0, 0.0)` gives
@@ -153,13 +153,13 @@ class TestSpecificTupleOperations(TestPyray):
         """Test the magnitude of a normalized vector."""
         v = pyray.vector(1.0, 2.0, 3.0)
         norm = v.normalized()
-        self.assertAlmostEqual(1.0, norm.magnitude())
+        self.assertFloatsAlmostEqual(1.0, norm.magnitude())
 
     def test_dot_product(self):
         """Test the dot product of two tuples."""
         a = pyray.vector(1.0, 2.0, 3.0)
         b = pyray.vector(2.0, 3.0, 4.0)
-        self.assertAlmostEqual(20, a.dot(b))
+        self.assertFloatsAlmostEqual(20.0, a.dot(b))
 
     def test_cross_product(self):
         """Test the cross product of two vectors."""

@@ -3,7 +3,8 @@
 
 """A photorealistic 3D renderer."""
 
+from .tuples import Tuple, Point, Vector, point, vector
 from .canvases import Canvas
 from .colors import Color
-from .matrices import Matrix, DimensionError, matrix2x2, matrix3x3, matrix4x4
-from .tuples import Tuple, Point, Vector, point, vector
+from .matrices import \
+    Matrix, DimensionError, NotInvertibleError, matrix2x2, matrix3x3, matrix4x4
