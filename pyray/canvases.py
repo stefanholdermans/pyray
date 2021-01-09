@@ -41,26 +41,24 @@ class _PPMBuilder:
     MAGIC_NUMBER: str = "P3"
     MAX_COLOR_VALUE: int = 255
 
-    canvas: Canvas
-    buffer: List[str]
+    _buffer: List[str]
 
-    def __init__(self, canvas: Canvas):
-        self.canvas = canvas
-        self.buffer = []
+    def __init__(self):
+        self._buffer = []
 
-    def construct_header(self):
-        """Append the PPM header."""
-        self.buffer.append(self.MAGIC_NUMBER)
-        self.buffer.append(f"{self.canvas.width} {self.canvas.height}")
-        self.buffer.append(f"{self.MAX_COLOR_VALUE}")
+    def construct_header(self, canvas: Canvas):
+        """Append the PPM header for a canvas."""
+        self._buffer.append(self.MAGIC_NUMBER)
+        self._buffer.append(f"{canvas.width} {canvas.height}")
+        self._buffer.append(f"{self.MAX_COLOR_VALUE}")
 
-    def construct_pixel_data(self):
-        """Append the PPM pixel data."""
-        for y in range(self.canvas.height):
+    def construct_pixel_data(self, canvas: Canvas):
+        """Append the PPM pixel data for a canvas."""
+        for y in range(canvas.height):
             line_buffer = []
 
-            for x in range(self.canvas.width):
-                color = self.canvas[x, y]
+            for x in range(canvas.width):
+                color = canvas[x, y]
 
                 red = self._color_value(color.red)
                 green = self._color_value(color.green)
@@ -71,7 +69,7 @@ class _PPMBuilder:
                 line_buffer.append(f"{blue}")
 
             for line in textwrap.wrap(" ".join(line_buffer)):
-                self.buffer.append(line)
+                self._buffer.append(line)
 
     def _color_value(self, intensity: float) -> int:
         intensity = min(max(0.0, intensity), 1.0)
@@ -79,12 +77,12 @@ class _PPMBuilder:
 
     def to_ppm(self) -> str:
         """Return a string representation."""
-        return "\n".join(self.buffer) + "\n"
+        return "\n".join(self._buffer) + "\n"
 
 
 def ppm(canvas: Canvas) -> str:
     """Return a PPM-formatted string representation of a canvas."""
-    builder = _PPMBuilder(canvas)
-    builder.construct_header()
-    builder.construct_pixel_data()
+    builder = _PPMBuilder()
+    builder.construct_header(canvas)
+    builder.construct_pixel_data(canvas)
     return builder.to_ppm()
