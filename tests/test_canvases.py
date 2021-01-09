@@ -43,7 +43,7 @@ class TestCanvasPersistence(TestPyray):
     def test_ppm_header(self):
         """Test constructing the PPM header."""
         c = pyray.Canvas(5, 3)
-        ppm = c.to_ppm()
+        ppm = pyray.ppm(c)
         self.assertEqual(["P3", "5 3", "255"], ppm.split("\n")[:3])
 
     def test_ppm_pixel_data(self):
@@ -58,7 +58,7 @@ class TestCanvasPersistence(TestPyray):
         c[2, 1] = c2
         c[4, 2] = c3
 
-        ppm = c.to_ppm()
+        ppm = pyray.ppm(c)
         self.assertEqual(["255 0 0 0 0 0 0 0 0 0 0 0 0 0 0",
                           "0 0 0 0 0 0 0 128 0 0 0 0 0 0 0",
                           "0 0 0 0 0 0 0 0 0 0 0 0 0 0 255"],
@@ -69,7 +69,7 @@ class TestCanvasPersistence(TestPyray):
         c = pyray.Canvas(10, 2)
         for x, y in c:
             c[x, y] = pyray.Color(1.0, 0.8, 0.6)
-        ppm = c.to_ppm()
+        ppm = pyray.ppm(c)
         self.assertEqual(
             ["255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255"
              " 204",
@@ -82,5 +82,5 @@ class TestCanvasPersistence(TestPyray):
     def test_newline_termination_of_ppm_files(self):
         """Assert that PPM files are terminated by a newline character."""
         c = pyray.Canvas(5, 3)
-        ppm = c.to_ppm()
+        ppm = pyray.ppm(c)
         self.assertEqual("", ppm.split("\n")[-1])
