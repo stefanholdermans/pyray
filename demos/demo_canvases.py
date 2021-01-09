@@ -58,12 +58,14 @@ def main():
     env = Environment(gravity, wind)
 
     position = pyray.point(0.0, 1.0, 0.0)
-    velocity = pyray.vector(1.0, 1.8, 0.0).normalize() * 11.25
+    velocity = pyray.vector(1.0, 1.8, 0.0).normalized() * 11.25
     proj = Projectile(position, velocity)
 
     c = pyray.Canvas(900, 550)
     run(c, env, proj)
-    print(c.to_ppm(), end="")
+
+    ppm = pyray.ppm(c)
+    print(ppm, end="")
 
 
 if __name__ == "__main__":
