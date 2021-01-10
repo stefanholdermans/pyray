@@ -188,7 +188,7 @@ class NotInvertibleError(Exception):
 def matrix2x2(cells: List[float]) -> Matrix:
     """Initialize a 2x2 matrix.
 
-    Raise `ValueError` if `cells` provide too few or too many cell values.
+    Raises `ValueError` if `cells` provide too few or too many cell values.
     """
     return Matrix(2, cells)
 
@@ -196,7 +196,7 @@ def matrix2x2(cells: List[float]) -> Matrix:
 def matrix3x3(cells: List[float]) -> Matrix:
     """Initialize a 3x3 matrix.
 
-    Raise `ValueError` if `cells` provide too few or too many cell values.
+    Raises `ValueError` if `cells` provide too few or too many cell values.
     """
     return Matrix(3, cells)
 
@@ -204,7 +204,7 @@ def matrix3x3(cells: List[float]) -> Matrix:
 def matrix4x4(cells: List[float]) -> Matrix:
     """Initialize a 4x4 matrix.
 
-    Raise `ValueError` if `cells` provide too few or too many cell values.
+    Raises `ValueError` if `cells` provide too few or too many cell values.
     """
     return Matrix(4, cells)
 
