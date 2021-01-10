@@ -1,7 +1,9 @@
 # Copyright (c) 2020-2021 Stefan Holdermans.
 # Licensed under the MIT License.
 
-# pylint: disable=unsubscriptable-object
+# Prevent pylint from mistakenly reporting that `Optional` is unsubscriptable:
+#   pylint: disable=unsubscriptable-object
+# See https://github.com/PyCQA/pylint/issues/3882.
 
 """Matrices."""
 
