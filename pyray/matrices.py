@@ -39,11 +39,11 @@ class Matrix():
         self._cells = cells
 
     @property
-    def order(self):
+    def order(self) -> int:
         """Return the order of the matrix."""
         return self._order
 
-    def is_first_order(self):
+    def is_first_order(self) -> bool:
         """Return whether the matrix is first-order."""
         return self.order == 1
 
