@@ -31,7 +31,7 @@ Bookshelf, 2019).
 ### Matrix Transformations
 - [x] ~~Translation~~
 - [x] ~~Scaling~~
-- [ ] Rotation
+- [x] ~~Rotation~~
 - [ ] Shearing
 - [ ] Transformation chaining
 - [ ] Demo

@@ -6,7 +6,10 @@
 """Matrices."""
 
 from __future__ import annotations
+
+import math
 from typing import Iterator, List, Optional, Tuple as Pair
+
 from .tuples import Tuple
 
 
@@ -221,4 +224,34 @@ def scaling(x: float, y: float, z: float) -> Matrix:
     transform[0, 0] = x
     transform[1, 1] = y
     transform[2, 2] = z
+    return transform
+
+
+def rotation_x(r: float) -> Matrix:
+    """Construct a matrix for rotating around the x axis."""
+    transform = Matrix.identity(4)
+    transform[1, 1] = math.cos(r)
+    transform[1, 2] = -math.sin(r)
+    transform[2, 1] = math.sin(r)
+    transform[2, 2] = math.cos(r)
+    return transform
+
+
+def rotation_y(r: float) -> Matrix:
+    """Construct a matrix for rotating around the y axis."""
+    transform = Matrix.identity(4)
+    transform[0, 0] = math.cos(r)
+    transform[0, 2] = math.sin(r)
+    transform[2, 0] = -math.sin(r)
+    transform[2, 2] = math.cos(r)
+    return transform
+
+
+def rotation_z(r: float) -> Matrix:
+    """Construct a matrix for rotating around the z axis."""
+    transform = Matrix.identity(4)
+    transform[0, 0] = math.cos(r)
+    transform[0, 1] = -math.sin(r)
+    transform[1, 0] = math.sin(r)
+    transform[1, 1] = math.cos(r)
     return transform

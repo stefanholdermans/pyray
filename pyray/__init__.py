@@ -8,4 +8,4 @@ from .canvases import Canvas, ppm
 from .colors import Color
 from .matrices import \
     Matrix, OrderError, NotInvertibleError, matrix2x2, matrix3x3, matrix4x4, \
-    translation, scaling
+    translation, scaling, rotation_x, rotation_y, rotation_z
