@@ -43,6 +43,10 @@ class Matrix():
         """Return the order of the matrix."""
         return self._order
 
+    def is_first_order(self):
+        """Return whether the matrix is first-order."""
+        return self.order == 1
+
     def __iter__(self) -> Iterator[Pair[int, int]]:
         rows = range(self.order)
         cols = range(self.order)
@@ -118,7 +122,7 @@ class Matrix():
 
         Raises `OrderError` if the matrix is first-order.
         """
-        if self.order == 1:
+        if self.is_first_order():
             raise OrderError
 
         submatrix = Matrix(self.order - 1)
@@ -133,7 +137,7 @@ class Matrix():
 
         Raises `OrderError` if the matrix is first-order.
         """
-        if self.order == 1:
+        if self.is_first_order():
             raise OrderError
 
         return self.submatrix(row, col).determinant()
@@ -143,7 +147,7 @@ class Matrix():
 
         Raises `OrderError` if the matrix is first-order.
         """
-        if self.order == 1:
+        if self.is_first_order():
             raise OrderError
 
         minor = self.minor(row, col)
@@ -151,7 +155,7 @@ class Matrix():
 
     def determinant(self) -> float:
         """Return the determinant of the matrix."""
-        if self.order == 1:
+        if self.is_first_order():
             return self[0, 0]
 
         acc = 0.0
@@ -174,7 +178,7 @@ class Matrix():
         det = self.determinant()
         m = Matrix(self.order)
         for row, col in m:
-            c = self.cofactor(row, col) if not self.order == 1 else 1.0
+            c = self.cofactor(row, col) if not self.is_first_order() else 1.0
             m[col, row] = c / det
         return m
 
