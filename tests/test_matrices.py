@@ -315,3 +315,10 @@ class TestMatrixTransformation(TestPyray):
         v = pyray.vector(-4.0, 6.0, 8.0)
         self.assertTuplesAlmostEqual(pyray.vector(-2.0, 2.0, 2.0),
                                      inv * v)
+
+    def test_reflection(self):
+        """Assert that reflection is scaling by a negative value."""
+        transform = pyray.scaling(-1.0, 1.0, 1.0)
+        p = pyray.point(2.0, 3.0, 4.0)
+        self.assertTuplesAlmostEqual(
+            pyray.point(-2.0, 3.0, 4.0), transform * p)
