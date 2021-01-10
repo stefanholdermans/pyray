@@ -43,10 +43,6 @@ class Matrix():
         """Return the order of the matrix."""
         return self._order
 
-    def _check_not_first_order(self):
-        if self.order == 1:
-            raise OrderError
-
     def __iter__(self) -> Iterator[Pair[int, int]]:
         rows = range(self.order)
         cols = range(self.order)
@@ -122,7 +118,9 @@ class Matrix():
 
         Raises `OrderError` if the matrix is first-order.
         """
-        self._check_not_first_order()
+        if self.order == 1:
+            raise OrderError
+
         submatrix = Matrix(self.order - 1)
         for dst_row, dst_col in submatrix:
             src_row = dst_row if row > dst_row else dst_row + 1
@@ -135,7 +133,9 @@ class Matrix():
 
         Raises `OrderError` if the matrix is first-order.
         """
-        self._check_not_first_order()
+        if self.order == 1:
+            raise OrderError
+
         return self.submatrix(row, col).determinant()
 
     def cofactor(self, row: int, col: int) -> float:
@@ -143,7 +143,9 @@ class Matrix():
 
         Raises `OrderError` if the matrix is first-order.
         """
-        self._check_not_first_order()
+        if self.order == 1:
+            raise OrderError
+
         minor = self.minor(row, col)
         return minor if (row + col) % 2 == 0 else -minor
 
