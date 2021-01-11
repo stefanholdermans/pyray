@@ -249,8 +249,8 @@ class TestMatrixInversion(TestPyray):
         """Test calculating the inverse of a third matrix."""
         a = pyray.matrix4x4([9.0, 3.0, 0.0, 9.0,
                              -5.0, -2.0, -6.0, -3.0,
-                             -4.0,  9.0,  6.0,  4.0,
-                             -7.0,  6.0,  6.0,  2.0])
+                             -4.0, 9.0, 6.0, 4.0,
+                             -7.0, 6.0, 6.0, 2.0])
         self.assertMatricesAlmostEqual(
             pyray.matrix4x4([-0.04074, -0.07778, 0.14444, -0.22222,
                              -0.07778,  0.03333, 0.36667, -0.33333,
