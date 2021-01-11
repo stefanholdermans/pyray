@@ -141,3 +141,42 @@ class TestTransformations(TestPyray):
         transform = pyray.shearing(z=(0.0, 1.0))
         p = pyray.point(2.0, 3.0, 4.0)
         self.assertTuplesAlmostEqual(pyray.point(2.0, 3.0, 7.0), transform * p)
+
+    def test_sequencing_transformations(self):
+        """Assert that individual transformations are applied in sequence."""
+        p = pyray.point(1.0, 0.0, 1.0)
+        a = pyray.rotation_x(math.pi / 2.0)
+        b = pyray.scaling(5.0, 5.0, 5.0)
+        c = pyray.translation(10.0, 5.0, 7.0)
+
+        p2 = a * p
+        self.assertTuplesAlmostEqual(pyray.point(1.0, -1.0, 0.0), p2)
+
+        p3 = b * p2
+        self.assertTuplesAlmostEqual(pyray.point(5.0, -5.0, 0.0), p3)
+
+        p4 = c * p3
+        self.assertTuplesAlmostEqual(pyray.point(15.0, 0.0, 7.0), p4)
+
+    def test_chaining_transformations(self):
+        """Assert that chained transformations must be applied in reverse order.
+        """
+        p = pyray.point(1.0, 0.0, 1.0)
+        a = pyray.rotation_x(math.pi / 2.0)
+        b = pyray.scaling(5.0, 5.0, 5.0)
+        c = pyray.translation(10.0, 5.0, 7.0)
+
+        t = c * b * a
+        self.assertTuplesAlmostEqual(pyray.point(15.0, 0.0, 7.0), t * p)
+
+    def test_fluent_transformations(self):
+        """Test fluent API for concatenating transformation matrices."""
+        p = pyray.point(1.0, 0.0, 1.0)
+
+        transform = pyray.Transformation()
+        transform.add(pyray.rotation_x(math.pi / 2.0))
+        transform.add(pyray.scaling(5.0, 5.0, 5.0))
+        transform.add(pyray.translation(10.0, 5.0, 7.0))
+
+        self.assertTuplesAlmostEqual(pyray.point(15.0, 0.0, 7.0),
+                                     transform.apply(p))

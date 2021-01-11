@@ -8,10 +8,7 @@
 """Matrices."""
 
 from __future__ import annotations
-
-import math
 from typing import Iterator, List, Optional, Tuple as Pair
-
 from .tuples import Tuple
 
 
@@ -215,69 +212,3 @@ def matrix4x4(cells: List[float]) -> Matrix:
     Raises `ValueError` if `cells` provide too few or too many cell values.
     """
     return Matrix(4, cells)
-
-
-def translation(x: float, y: float, z: float) -> Matrix:
-    """Construct a translation matrix."""
-    transform = Matrix.identity(4)
-    transform[0, 3] = x
-    transform[1, 3] = y
-    transform[2, 3] = z
-    return transform
-
-
-def scaling(x: float, y: float, z: float) -> Matrix:
-    """Construct a scaling matrix."""
-    transform = Matrix.identity(4)
-    transform[0, 0] = x
-    transform[1, 1] = y
-    transform[2, 2] = z
-    return transform
-
-
-def rotation_x(r: float) -> Matrix:
-    """Construct a matrix for rotating around the x axis."""
-    transform = Matrix.identity(4)
-    transform[1, 1] = math.cos(r)
-    transform[1, 2] = -math.sin(r)
-    transform[2, 1] = math.sin(r)
-    transform[2, 2] = math.cos(r)
-    return transform
-
-
-def rotation_y(r: float) -> Matrix:
-    """Construct a matrix for rotating around the y axis."""
-    transform = Matrix.identity(4)
-    transform[0, 0] = math.cos(r)
-    transform[0, 2] = math.sin(r)
-    transform[2, 0] = -math.sin(r)
-    transform[2, 2] = math.cos(r)
-    return transform
-
-
-def rotation_z(r: float) -> Matrix:
-    """Construct a matrix for rotating around the z axis."""
-    transform = Matrix.identity(4)
-    transform[0, 0] = math.cos(r)
-    transform[0, 1] = -math.sin(r)
-    transform[1, 0] = math.sin(r)
-    transform[1, 1] = math.cos(r)
-    return transform
-
-
-def shearing(x: Pair[float, float] = (0.0, 0.0),
-             y: Pair[float, float] = (0.0, 0.0),
-             z: Pair[float, float] = (0.0, 0.0)) -> Matrix:
-    """Construct a shearing matrix."""
-    x_y, x_z = x
-    y_x, y_z = y
-    z_x, z_y = z
-
-    transform = Matrix.identity(4)
-    transform[0, 1] = x_y
-    transform[0, 2] = x_z
-    transform[1, 0] = y_x
-    transform[1, 2] = y_z
-    transform[2, 0] = z_x
-    transform[2, 1] = z_y
-    return transform
