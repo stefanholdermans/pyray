@@ -6,7 +6,7 @@
 from __future__ import annotations
 
 import textwrap
-from typing import Dict, Iterator, List, Tuple
+from typing import Dict, Iterator, List, Tuple as Pair
 
 from .colors import Color
 
@@ -14,7 +14,7 @@ from .colors import Color
 class Canvas:
     """A rectangular grid of pixels."""
 
-    _pixels: Dict[Tuple[int, int], Color]
+    _pixels: Dict[Pair[int, int], Color]
     width: int
     height: int
 
@@ -27,22 +27,22 @@ class Canvas:
                   for y in range(height)]
         self._pixels = dict(pixels)
 
-    def __iter__(self) -> Iterator[Tuple[int, int]]:
+    def __iter__(self) -> Iterator[Pair[int, int]]:
         yield from self._pixels
 
-    def __getitem__(self, pos: Tuple[int, int]) -> Color:
+    def __getitem__(self, pos: Pair[int, int]) -> Color:
         if pos not in self:
             raise IndexError
 
         return self._pixels[pos]
 
-    def __setitem__(self, pos: Tuple[int, int], color: Color):
+    def __setitem__(self, pos: Pair[int, int], color: Color):
         if pos not in self:
             raise IndexError
 
         self._pixels[pos] = color
 
-    def __contains__(self, pos: Tuple[int, int]) -> bool:
+    def __contains__(self, pos: Pair[int, int]) -> bool:
         return pos in self._pixels
 
 
