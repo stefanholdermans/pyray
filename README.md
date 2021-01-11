@@ -40,7 +40,7 @@ Bookshelf, 2019).
 - [x] ~~Ray creation~~
 - [x] ~~Ray-sphere intersection~~
 - [x] ~~Intersection tracking~~
-- [ ] Hit identification
+- [x] ~~Hit identification~~
 - [ ] Ray and sphere transformations
 - [ ] Demo
 
