@@ -105,3 +105,39 @@ class TestTransformations(TestPyray):
         self.assertTuplesAlmostEqual(
             pyray.point(0.0, math.sqrt(2.0) / 2.0, -math.sqrt(2.0) / 2.0),
             inv * p)
+
+    def test_skewing_x_in_proportion_to_y(self):
+        """Assert that a shearing transformation moves x in proportion to y."""
+        transform = pyray.shearing(x=(1.0, 0.0))
+        p = pyray.point(2.0, 3.0, 4.0)
+        self.assertTuplesAlmostEqual(pyray.point(5.0, 3.0, 4.0), transform * p)
+
+    def test_skewing_x_in_proportion_to_z(self):
+        """Assert that a shearing transformation moves x in proportion to z."""
+        transform = pyray.shearing(x=(0.0, 1.0))
+        p = pyray.point(2.0, 3.0, 4.0)
+        self.assertTuplesAlmostEqual(pyray.point(6.0, 3.0, 4.0), transform * p)
+
+    def test_skewing_y_in_proportion_to_x(self):
+        """Assert that a shearing transformation moves y in proportion to x."""
+        transform = pyray.shearing(y=(1.0, 0.0))
+        p = pyray.point(2.0, 3.0, 4.0)
+        self.assertTuplesAlmostEqual(pyray.point(2.0, 5.0, 4.0), transform * p)
+
+    def test_skewing_y_in_proportion_to_z(self):
+        """Assert that a shearing transformation moves y in proportion to z."""
+        transform = pyray.shearing(y=(0.0, 1.0))
+        p = pyray.point(2.0, 3.0, 4.0)
+        self.assertTuplesAlmostEqual(pyray.point(2.0, 7.0, 4.0), transform * p)
+
+    def test_skewing_z_in_proportion_to_x(self):
+        """Assert that a shearing transformation moves z in proportion to x."""
+        transform = pyray.shearing(z=(1.0, 0.0))
+        p = pyray.point(2.0, 3.0, 4.0)
+        self.assertTuplesAlmostEqual(pyray.point(2.0, 3.0, 6.0), transform * p)
+
+    def test_skewing_z_in_proportion_to_y(self):
+        """Assert that a shearing transformation moves z in proportion to y."""
+        transform = pyray.shearing(z=(0.0, 1.0))
+        p = pyray.point(2.0, 3.0, 4.0)
+        self.assertTuplesAlmostEqual(pyray.point(2.0, 3.0, 7.0), transform * p)

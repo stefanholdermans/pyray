@@ -263,3 +263,21 @@ def rotation_z(r: float) -> Matrix:
     transform[1, 0] = math.sin(r)
     transform[1, 1] = math.cos(r)
     return transform
+
+
+def shearing(x: Pair[float, float] = (0.0, 0.0),
+             y: Pair[float, float] = (0.0, 0.0),
+             z: Pair[float, float] = (0.0, 0.0)) -> Matrix:
+    """Construct a shearing matrix."""
+    x_y, x_z = x
+    y_x, y_z = y
+    z_x, z_y = z
+
+    transform = Matrix.identity(4)
+    transform[0, 1] = x_y
+    transform[0, 2] = x_z
+    transform[1, 0] = y_x
+    transform[1, 2] = y_z
+    transform[2, 0] = z_x
+    transform[2, 1] = z_y
+    return transform
