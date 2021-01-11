@@ -15,9 +15,10 @@ from .tuples import point
 class Sphere:
     """A sphere."""
 
-    @staticmethod
-    def intersections(ray: Ray) -> List[float]:
+    def intersections(self, ray: Ray) -> List[float]:
         """Return the distances at which a given ray intersects the sphere."""
+        del self  # Unused
+
         sphere_to_ray = ray.origin - point(0.0, 0.0, 0.0)
 
         a = ray.direction.dot(ray.direction)
