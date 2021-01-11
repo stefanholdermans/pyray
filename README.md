@@ -32,8 +32,8 @@ Bookshelf, 2019).
 - [x] ~~Translation~~
 - [x] ~~Scaling~~
 - [x] ~~Rotation~~
-- [ ] Shearing
-- [ ] Transformation chaining
+- [x] ~~Shearing~~
+- [x] ~~Transformation chaining~~
 - [ ] Demo
 
 ### Ray-Sphere Intersections
