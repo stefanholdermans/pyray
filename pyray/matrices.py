@@ -50,12 +50,22 @@ class Matrix():
         yield from [(row, col) for row in rows for col in cols]
 
     def __getitem__(self, index: Pair[int, int]) -> float:
+        if index not in self:
+            raise IndexError
+
         row, col = index
         return self._cells[row * self.order + col]
 
     def __setitem__(self, index: Pair[int, int], cell: float):
+        if index not in self:
+            raise IndexError
+
         row, col = index
         self._cells[row * self.order + col] = cell
+
+    def __contains__(self, index: Pair[int, int]) -> bool:
+        row, col = index
+        return row in range(self.order) and col in range(self.order)
 
     def __eq__(self, other):
         if isinstance(other, Matrix):

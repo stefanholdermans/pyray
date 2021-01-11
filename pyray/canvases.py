@@ -31,10 +31,19 @@ class Canvas:
         yield from self._pixels
 
     def __getitem__(self, pos: Tuple[int, int]) -> Color:
+        if pos not in self:
+            raise IndexError
+
         return self._pixels[pos]
 
     def __setitem__(self, pos: Tuple[int, int], color: Color):
+        if pos not in self:
+            raise IndexError
+
         self._pixels[pos] = color
+
+    def __contains__(self, pos: Tuple[int, int]) -> bool:
+        return pos in self._pixels
 
 
 class _PPMBuilder:

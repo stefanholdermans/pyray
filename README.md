@@ -28,13 +28,13 @@ Bookshelf, 2019).
 - [x] ~~Matrix transposition~~
 - [x] ~~Matrix inversion~~
 
-### Matrix Transformations
+### ~~Matrix Transformations~~
 - [x] ~~Translation~~
 - [x] ~~Scaling~~
 - [x] ~~Rotation~~
 - [x] ~~Shearing~~
 - [x] ~~Transformation chaining~~
-- [ ] Demo
+- [x] ~~Demo~~
 
 ### Ray-Sphere Intersections
 - [ ] Ray creation
