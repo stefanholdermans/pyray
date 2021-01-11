@@ -8,6 +8,7 @@ from .colors import Color
 from .matrices import Matrix, OrderError, NotInvertibleError
 from .matrices import matrix2x2, matrix3x3, matrix4x4
 from .rays import Ray
+from .spheres import Sphere
 from .transformations import translation, scaling
 from .transformations import rotation_x, rotation_y, rotation_z
 from .transformations import shearing

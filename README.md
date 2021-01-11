@@ -38,7 +38,7 @@ Bookshelf, 2019).
 
 ### Ray-Sphere Intersections
 - [x] ~~Ray creation~~
-- [ ] Ray-sphere intersection
+- [x] ~~Ray-sphere intersection~~
 - [ ] Intersection tracking
 - [ ] Hit identification
 - [ ] Ray and sphere transformations
