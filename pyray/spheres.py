@@ -27,9 +27,9 @@ class Sphere:
         discriminant = b * b - 4 * a * c
 
         if discriminant < 0.0:
-            return []
+            return ()
 
         t1 = (-b - math.sqrt(discriminant)) / (2.0 * a)
         t2 = (-b + math.sqrt(discriminant)) / (2.0 * a)
 
-        return [Intersection(t1, self), Intersection(t2, self)]
+        return (Intersection(t1, self), Intersection(t2, self))
