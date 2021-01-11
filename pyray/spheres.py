@@ -17,7 +17,7 @@ class Sphere:
     """A sphere."""
 
     def intersections(self, ray: Ray) -> Sequence[Intersection]:
-        """Return the distances at which a given ray intersects the sphere."""
+        """Return the intersections of a given ray with the sphere."""
         sphere_to_ray = ray.origin - point(0.0, 0.0, 0.0)
 
         a = ray.direction.dot(ray.direction)
