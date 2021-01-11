@@ -3,10 +3,11 @@
 
 """Spheres."""
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 import math
-from typing import List
 
+from .intersections import Intersection
 from .rays import Ray
 from .tuples import point
 
@@ -15,10 +16,8 @@ from .tuples import point
 class Sphere:
     """A sphere."""
 
-    def intersections(self, ray: Ray) -> List[float]:
+    def intersections(self, ray: Ray) -> Sequence[Intersection]:
         """Return the distances at which a given ray intersects the sphere."""
-        del self  # Unused
-
         sphere_to_ray = ray.origin - point(0.0, 0.0, 0.0)
 
         a = ray.direction.dot(ray.direction)
@@ -33,4 +32,4 @@ class Sphere:
         t1 = (-b - math.sqrt(discriminant)) / (2.0 * a)
         t2 = (-b + math.sqrt(discriminant)) / (2.0 * a)
 
-        return [t1, t2]
+        return [Intersection(t1, self), Intersection(t2, self)]

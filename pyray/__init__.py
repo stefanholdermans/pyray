@@ -5,6 +5,7 @@
 
 from .canvases import Canvas, ppm
 from .colors import Color
+from .intersections import Intersection, intersections
 from .matrices import Matrix, OrderError, NotInvertibleError
 from .matrices import matrix2x2, matrix3x3, matrix4x4
 from .rays import Ray
