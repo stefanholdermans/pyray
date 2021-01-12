@@ -6,17 +6,13 @@
 from __future__ import annotations
 
 import textwrap
-from typing import Dict, Iterator, List, Tuple as Pair
+from typing import Iterator, List, Tuple as Pair
 
 from .colors import Color
 
 
 class Canvas:
     """A rectangular grid of pixels."""
-
-    _pixels: Dict[Pair[int, int], Color]
-    width: int
-    height: int
 
     def __init__(self, width: int, height: int):
         self.width = width

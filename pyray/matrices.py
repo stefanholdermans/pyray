@@ -16,9 +16,6 @@ class Matrix():
     """A square matrix, i.e., a matrix with the same number of rows and columns.
     """
 
-    _dim: int
-    _cells: List[float]
-
     def __init__(self, order: int, cells: Optional[List[float]] = None):
         if order < 1:
             raise ValueError
