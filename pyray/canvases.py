@@ -73,6 +73,7 @@ class Canvas:
             for line in textwrap.wrap(" ".join(line_buffer)):
                 buffer.append(line)
 
-    def _color_value(self, intensity: float) -> int:
+    @classmethod
+    def _color_value(cls, intensity: float) -> int:
         intensity = min(max(0.0, intensity), 1.0)
-        return round(self.MAX_COLOR_VALUE * intensity)
+        return round(cls.MAX_COLOR_VALUE * intensity)
