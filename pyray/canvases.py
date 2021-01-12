@@ -18,10 +18,9 @@ class Canvas:
         self.width = width
         self.height = height
 
-        pixels = [((x, y), Color(0.0, 0.0, 0.0))
-                  for x in range(width)
-                  for y in range(height)]
-        self._pixels = dict(pixels)
+        self._pixels = {(x, y): Color(0.0, 0.0, 0.0)
+                        for x in range(width)
+                        for y in range(height)}
 
     def __iter__(self) -> Iterator[Pair[int, int]]:
         yield from self._pixels
