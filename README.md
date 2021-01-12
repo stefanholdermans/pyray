@@ -41,7 +41,7 @@ Bookshelf, 2019).
 - [x] ~~Ray-sphere intersection~~
 - [x] ~~Intersection tracking~~
 - [x] ~~Hit identification~~
-- [ ] Ray and sphere transformations
+- [x] ~~Ray and sphere transformations~~
 - [ ] Demo
 
 ### Light and Shading

@@ -3,7 +3,11 @@
 
 """Rays."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass
+
+from .matrices import Matrix
 from .tuples import Tuple
 
 
@@ -24,3 +28,7 @@ class Ray:
     def position(self, t: float) -> Tuple:
         """Compute the point at a given distance along the ray."""
         return self.origin + self.direction * t
+
+    def transformed(self, transform: Matrix) -> Ray:
+        """Apply a transformation matrix to the ray."""
+        return Ray(transform * self.origin, transform * self.direction)

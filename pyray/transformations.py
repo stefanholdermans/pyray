@@ -15,10 +15,13 @@ class Transformation:
     transformation matrices.
     """
 
-    _transform: Matrix
-
     def __init__(self):
-        self._transform = Matrix.identity(4)
+        self._matrix = Matrix.identity(4)
+
+    @property
+    def matrix(self) -> Matrix:
+        """The transformation matrix."""
+        return self._matrix
 
     def add(self, transform: Matrix):
         """Add a transformation matrix.
@@ -28,11 +31,11 @@ class Transformation:
         if transform.order != 4:
             raise OrderError
 
-        self._transform = transform * self._transform
+        self._matrix = transform * self._matrix
 
     def apply(self, t: Tuple) -> Tuple:
         """Apply the transformation to a tuple."""
-        return self._transform * t
+        return self._matrix * t
 
 
 def translation(x: float, y: float, z: float) -> Matrix:

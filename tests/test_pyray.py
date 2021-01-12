@@ -46,3 +46,12 @@ class TestPyray(unittest.TestCase):
 
         for row, col in first:
             self.assertFloatsAlmostEqual(first[row, col], second[row, col])
+
+    def assertTransformationsAlmostEqual(
+            self, first: pyray.Transformation, second: pyray.Transformation):
+        # pylint: disable=invalid-name
+        """Assert that two encapsulated transformation matrices are equal as
+        determined by the pointwise differences of their cells rounded to 5
+        decimal places.
+        """
+        self.assertMatricesAlmostEqual(first.matrix, second.matrix)

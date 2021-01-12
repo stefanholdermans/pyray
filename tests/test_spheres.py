@@ -63,3 +63,34 @@ class TestSpheres(TestPyray):
         self.assertEqual(2, len(xs))
         self.assertFloatsAlmostEqual(-6.0, xs[0].t)
         self.assertFloatsAlmostEqual(-4.0, xs[1].t)
+
+    def test_default_sphere_transformation(self):
+        """Test a sphere's default transformation."""
+        s = pyray.Sphere()
+        self.assertTransformationsAlmostEqual(pyray.Transformation(),
+                                              s.transformation)
+
+    def test_changing_sphere_transformation(self):
+        """Test changing a sphere's transformation."""
+        s = pyray.Sphere()
+        s.translate(2.0, 3.0, 4.0)
+        self.assertMatricesAlmostEqual(pyray.translation(2.0, 3.0, 4.0),
+                                       s.transformation.matrix)
+
+    def test_scaled_sphere_intersection(self):
+        """Test intersecting a scaled sphere with a ray."""
+        r = pyray.Ray(pyray.point(0.0, 0.0, -5.0), pyray.vector(0.0, 0.0, 1.0))
+        s = pyray.Sphere()
+        s.scale(2.0, 2.0, 2.0)
+        xs = s.intersections(r)
+        self.assertEqual(2, len(xs))
+        self.assertFloatsAlmostEqual(3.0, xs[0].t)
+        self.assertFloatsAlmostEqual(7.0, xs[1].t)
+
+    def test_translated_sphere_intersection(self):
+        """Test intersecting a translated sphere with a ray."""
+        r = pyray.Ray(pyray.point(0.0, 0.0, -5.0), pyray.vector(0.0, 0.0, 1.0))
+        s = pyray.Sphere()
+        s.translate(5.0, 0.0, 0.0)
+        xs = s.intersections(r)
+        self.assertEqual(0, len(xs))
