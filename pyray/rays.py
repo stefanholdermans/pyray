@@ -8,7 +8,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from .matrices import Matrix
-from .tuples import Tuple
+from .tuples import Tuple, TupleTypeMismatchError
 
 
 @dataclass
@@ -20,7 +20,7 @@ class Ray:
 
     def __init__(self, origin: Tuple, direction: Tuple):
         if not origin.is_point() or not direction.is_vector():
-            raise ValueError
+            raise TupleTypeMismatchError
 
         self.origin = origin
         self.direction = direction
