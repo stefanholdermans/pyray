@@ -54,10 +54,10 @@ class Tuple:
         """For vectors, compute the cross product of the tuple with another
         vector.
 
-        Raises `ValueError` if either tuple is not a vector.
+        Raises `TupleTypeMismatchError` if either tuple is not a vector.
         """
         if not (self.is_vector() and other.is_vector()):
-            raise ValueError
+            raise TupleTypeMismatchError("only defined for vectors")
 
         x = self.y * other.z - self.z * other.y
         y = self.z * other.x - self.x * other.z
@@ -113,6 +113,10 @@ class Tuple:
             return Tuple(x, y, z, w)
 
         return NotImplemented
+
+
+class TupleTypeMismatchError(Exception):
+    """Raised when a point was supplied when a vector was expected."""
 
 
 def point(x: float, y: float, z: float) -> Tuple:

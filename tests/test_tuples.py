@@ -174,7 +174,7 @@ class TestSpecificTupleOperations(TestPyray):
         """
         a = pyray.point(1.0, 2.0, 3.0)
         b = pyray.vector(2.0, 3.0, 4.0)
-        with self.assertRaises(ValueError):
+        with self.assertRaises(pyray.TupleTypeMismatchError):
             _ = a.cross(b)
 
     def test_cross_product_with_point(self):
@@ -183,5 +183,5 @@ class TestSpecificTupleOperations(TestPyray):
         """
         a = pyray.vector(1.0, 2.0, 3.0)
         b = pyray.point(2.0, 3.0, 4.0)
-        with self.assertRaises(ValueError):
+        with self.assertRaises(pyray.TupleTypeMismatchError):
             _ = a.cross(b)

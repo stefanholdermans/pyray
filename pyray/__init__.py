@@ -14,4 +14,4 @@ from .transformations import translation, scaling
 from .transformations import rotation_x, rotation_y, rotation_z
 from .transformations import shearing
 from .transformations import Transformation
-from .tuples import Tuple, point, vector
+from .tuples import Tuple, TupleTypeMismatchError, point, vector
