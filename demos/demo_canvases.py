@@ -15,16 +15,16 @@ class Environment(NamedTuple):
     # pylint: disable=inherit-non-class
     # pylint: disable=too-few-public-methods
     """A simulation environment."""
-    gravity: pyray.Vector
-    wind: pyray.Vector
+    gravity: pyray.Tuple  # A vector
+    wind: pyray.Tuple  # A vector
 
 
 @dataclass
 class Projectile:
     """A virtual projectile."""
 
-    position: pyray.Point
-    velocity: pyray.Vector
+    position: pyray.Tuple  # A point
+    velocity: pyray.Tuple  # A vector
     clock: int = 0
 
     def tick(self, env: Environment):
@@ -64,7 +64,7 @@ def main():
     c = pyray.Canvas(900, 550)
     run(c, env, proj)
 
-    ppm = pyray.ppm(c)
+    ppm = c.ppm()
     print(ppm, end="")
 
 

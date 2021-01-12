@@ -30,7 +30,7 @@ def main():
         point = transform.apply(twelve)
         canvas[round(point.x), round(point.z)] = RED
 
-    ppm = pyray.ppm(canvas)
+    ppm = canvas.ppm()
     print(ppm, end="")
 
 

@@ -3,7 +3,7 @@
 
 """A photorealistic 3D renderer."""
 
-from .canvases import Canvas, ppm
+from .canvases import Canvas
 from .colors import Color
 from .intersections import Intersection, intersections, hit
 from .matrices import Matrix, OrderError, NotInvertibleError
