@@ -57,21 +57,14 @@ class Canvas:
 
     def _construct_ppm_pixel_data(self, buffer: List[str]):
         for y in range(self.height):
-            line_buffer = []
-
+            samples = []
             for x in range(self.width):
                 color = self[x, y]
-
-                red = self._color_value(color.red)
-                green = self._color_value(color.green)
-                blue = self._color_value(color.blue)
-
-                line_buffer.append(f"{red}")
-                line_buffer.append(f"{green}")
-                line_buffer.append(f"{blue}")
-
-            for line in textwrap.wrap(" ".join(line_buffer)):
-                buffer.append(line)
+                for beam in 'red', 'green', 'blue':
+                    intensity = getattr(color, beam)
+                    samples.append(f"{self._color_value(intensity)}")
+            for row in textwrap.wrap(" ".join(samples)):
+                buffer.append(row)
 
     @classmethod
     def _color_value(cls, intensity: float) -> int:
