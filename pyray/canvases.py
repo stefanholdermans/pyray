@@ -60,7 +60,7 @@ class Canvas:
             samples = []
             for x in range(self.width):
                 color = self[x, y]
-                for beam in 'red', 'green', 'blue':
+                for beam in "red", "green", "blue":
                     intensity = getattr(color, beam)
                     samples.append(f"{self._color_value(intensity)}")
             for row in textwrap.wrap(" ".join(samples)):
