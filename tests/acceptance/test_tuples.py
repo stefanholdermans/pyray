@@ -45,7 +45,7 @@ def run(env: Environment, proj: Projectile, logger: logging.Logger):
     """Repeatedly update a projectile by letting time pass until the
     projectile's y position is less than or equal to zero.
 
-    Logss the projectile's position after each tick and logs the number of
+    Logs the projectile's position after each tick and logs the number of
     ticks it takes for the projetile to hit the ground.
     """
     while proj.position.y > 0.0:
