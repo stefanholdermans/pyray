@@ -1,7 +1,7 @@
 # Copyright (c) 2020-2021 Stefan Holdermans.
 # Licensed under the MIT License.
 
-"""Tests for tracking intersections."""
+"""Unit tests for tracking intersections."""
 
 import pyray
 from .test_pyray import TestPyray

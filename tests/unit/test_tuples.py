@@ -1,7 +1,7 @@
 # Copyright (c) 2020-2021 Stefan Holdermans.
 # Licensed under the MIT License.
 
-"""Tests for tuples, points, and vectors."""
+"""Unit ests for tuples, points, and vectors."""
 
 import math
 import pyray

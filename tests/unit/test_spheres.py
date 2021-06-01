@@ -1,7 +1,7 @@
 # Copyright (c) 2020-2021 Stefan Holdermans.
 # Licensed under the MIT License.
 
-"""Tests for spheres."""
+"""Unit tests for spheres."""
 
 import pyray
 from .test_pyray import TestPyray

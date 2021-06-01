@@ -1,7 +1,7 @@
 # Copyright (c) 2020-2021 Stefan Holdermans.
 # Licensed under the MIT License.
 
-"""Tests for matrix transformations."""
+"""Unit tests for matrix transformations."""
 
 import math
 import pyray

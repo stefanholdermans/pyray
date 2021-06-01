@@ -1,7 +1,7 @@
 # Copyright (c) 2020-2021 Stefan Holdermans.
 # Licensed under the MIT License.
 
-"""Tests utilities."""
+"""Unit-test utilities."""
 
 import unittest
 import pyray

@@ -1,7 +1,7 @@
 # Copyright (c) 2020-2021 Stefan Holdermans.
 # Licensed under the MIT License.
 
-"""Tests for colors."""
+"""Unit tests for colors."""
 
 import pyray
 from .test_pyray import TestPyray
