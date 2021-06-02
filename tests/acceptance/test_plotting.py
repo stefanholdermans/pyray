@@ -73,4 +73,4 @@ class TestPlotting(unittest.TestCase):
 
         ppm = c.ppm()
         with open(f'{os.path.dirname(__file__)}/plotting.ppm') as expected:
-            self.assertListEqual(expected.readlines(), ppm.splitlines(True))
+            self.assertEqual(expected.read(), ppm)
