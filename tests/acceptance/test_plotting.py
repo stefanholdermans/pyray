@@ -1,10 +1,14 @@
 # Copyright (c) 2020-2021 Stefan Holdermans.
 # Licensed under the MIT License.
 
-"""Plotting the course of a virtual projectile on a canvas."""
+"""Acceptance test for drawing on a canvas."""
+
 
 from dataclasses import dataclass
+import os
 from typing import NamedTuple
+import unittest
+
 import pyray
 
 
@@ -51,22 +55,22 @@ def run(c: pyray.Canvas, env: Environment, proj: Projectile):
         proj.tick(env)
 
 
-def main():
-    """Run the demo."""
-    gravity = pyray.vector(0.0, -0.1, 0.0)
-    wind = pyray.vector(-0.01, 0.0, 0.0)
-    env = Environment(gravity, wind)
+class TestPlotting(unittest.TestCase):
+    """Test case for plotting the course of a virtual projectile on a canvas."""
 
-    position = pyray.point(0.0, 1.0, 0.0)
-    velocity = pyray.vector(1.0, 1.8, 0.0).normalized() * 11.25
-    proj = Projectile(position, velocity)
+    def test_plotting(self):
+        """Test plotting the course of a virtual projectile on a canvas."""
+        gravity = pyray.vector(0.0, -0.1, 0.0)
+        wind = pyray.vector(-0.01, 0.0, 0.0)
+        env = Environment(gravity, wind)
 
-    c = pyray.Canvas(900, 550)
-    run(c, env, proj)
+        position = pyray.point(0.0, 1.0, 0.0)
+        velocity = pyray.vector(1.0, 1.8, 0.0).normalized() * 11.25
+        proj = Projectile(position, velocity)
 
-    ppm = c.ppm()
-    print(ppm, end="")
+        c = pyray.Canvas(900, 550)
+        run(c, env, proj)
 
-
-if __name__ == "__main__":
-    main()
+        ppm = c.ppm()
+        with open(f'{os.path.dirname(__file__)}/plotting.ppm') as expected:
+            self.assertListEqual(expected.readlines(), ppm.splitlines(True))
