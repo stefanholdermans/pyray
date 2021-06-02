@@ -68,10 +68,10 @@ class TestPlotting(unittest.TestCase):
         velocity = pyray.vector(1.0, 1.8, 0.0).normalized() * 11.25
         proj = Projectile(position, velocity)
 
-        c = pyray.Canvas(900, 550)
-        run(c, env, proj)
+        canvas = pyray.Canvas(900, 550)
+        run(canvas, env, proj)
 
-        ppm = c.ppm()
+        ppm = canvas.ppm()
 
         golden_file_path = (f'{os.path.dirname(__file__)}'
                             '/golden_files/plotting.ppm')
