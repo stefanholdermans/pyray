@@ -55,10 +55,10 @@ def run(env: Environment, proj: Projectile, logger: logging.Logger):
         f'Projectile hit the ground after {proj.clock} ticks!')
 
 
-class TestPyray(unittest.TestCase):
+class TestProjectiles(unittest.TestCase):
     """Test case for firing virtual projectiles and seeing how far they go."""
 
-    def test_tuples(self):
+    def test_projectiles(self):
         """Test firing virtual projectiles and seeing how far they go."""
         gravity = pyray.vector(0.0, -0.1, 0.0)
         wind = pyray.vector(-0.01, 0.0, 0.0)
