@@ -72,5 +72,8 @@ class TestPlotting(unittest.TestCase):
         run(c, env, proj)
 
         ppm = c.ppm()
-        with open(f'{os.path.dirname(__file__)}/plotting.ppm') as expected:
-            self.assertEqual(expected.read(), ppm)
+
+        golden_file_path = (f'{os.path.dirname(__file__)}'
+                            '/golden_files/plotting.ppm')
+        with open(golden_file_path) as golden_file:
+            self.assertEqual(golden_file.read(), ppm)
