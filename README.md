@@ -36,13 +36,13 @@ Bookshelf, 2019).
 - [x] ~~Transformation chaining~~
 - [x] ~~Demo~~
 
-### Ray-Sphere Intersections
+### ~~Ray-Sphere Intersections~~
 - [x] ~~Ray creation~~
 - [x] ~~Ray-sphere intersection~~
 - [x] ~~Intersection tracking~~
 - [x] ~~Hit identification~~
 - [x] ~~Ray and sphere transformations~~
-- [ ] Demo
+- [x] ~~Demo~~
 
 ### Light and Shading
 - [ ] Surface normals
