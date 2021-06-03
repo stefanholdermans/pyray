@@ -11,7 +11,7 @@ class TestPyray(unittest.TestCase):
     """Test case for photorealistic 3D rendering."""
 
     def assertFloatsAlmostEqual(self, first: float, second: float):
-        #pylint: disable=invalid-name
+        # pylint: disable=invalid-name
         """Assert that two floating-point values are equal as determined by
         their difference rounded to 5 decimal places.
         """
