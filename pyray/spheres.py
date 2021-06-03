@@ -86,7 +86,10 @@ class Sphere:
         return (Intersection(t1, self), Intersection(t2, self))
 
     def normal_at(self, world_point: Tuple) -> Tuple:
-        """Return the normal on the sphere at a given point."""
+        """Return the normal on the sphere at a given point.
+
+        Raises `TupleTypeMismatchError` if `world_point` is not a point.
+        """
         if not world_point.is_point():
             raise TupleTypeMismatchError
 
