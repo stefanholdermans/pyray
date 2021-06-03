@@ -46,7 +46,7 @@ Bookshelf, 2019).
 
 ### Light and Shading
 - [x] ~~Surface normals~~
-- [ ] Vector reflection
+- [x] ~~Vector reflection~~
 - [ ] Phong reflection model
 - [ ] Demo
 

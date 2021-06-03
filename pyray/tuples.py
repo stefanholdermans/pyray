@@ -114,6 +114,17 @@ class Tuple:
 
         return NotImplemented
 
+    def reflected(self, normal: Tuple):
+        """Return the vector obtained by reflecting the vector around a given
+        normal.
+
+        Raises `TupleTypeMismatchError` if `normal` is not a vector.
+        """
+        if not normal.is_vector():
+            raise TupleTypeMismatchError
+
+        return self - normal * 2.0 * self.dot(normal)
+
 
 class TupleTypeMismatchError(Exception):
     """Raised when a point was supplied when a vector was expected or vice

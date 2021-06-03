@@ -185,3 +185,21 @@ class TestSpecificTupleOperations(TestPyray):
         b = pyray.point(2.0, 3.0, 4.0)
         with self.assertRaises(pyray.TupleTypeMismatchError):
             _ = a.cross(b)
+
+
+class TestReflection(TestPyray):
+    """Test case for reflecting vectors."""
+
+    def test_reflecting_vector_approaching_at_45_degrees(self):
+        """Test reflecting a vector approaching at 45 degrees."""
+        v = pyray.vector(1.0, -1.0, 0.0)
+        n = pyray.vector(0.0, 1.0, 0.0)
+        r = v.reflected(n)
+        self.assertTuplesAlmostEqual(pyray.vector(1.0, 1.0, 0.0), r)
+
+    def test_reflecting_vector_off_slanted_surface(self):
+        """Test reflecting a vector off a slanted surface."""
+        v = pyray.vector(0.0, -1.0, 0.0)
+        n = pyray.vector(math.sqrt(2.0) / 2.0, math.sqrt(2.0) / 2.0, 0.0)
+        r = v.reflected(n)
+        self.assertTuplesAlmostEqual(pyray.vector(1.0, 0.0, 0.0), r)
