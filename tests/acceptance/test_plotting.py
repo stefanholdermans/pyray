@@ -5,11 +5,10 @@
 
 
 from dataclasses import dataclass
-import os
 from typing import NamedTuple
-import unittest
 
 import pyray
+from .test_canvas import TestCanvas
 
 
 RED: pyray.Color = pyray.Color(1.0, 0.0, 0.0)
@@ -55,8 +54,11 @@ def run(c: pyray.Canvas, env: Environment, proj: Projectile):
         proj.tick(env)
 
 
-class TestPlotting(unittest.TestCase):
+class TestPlotting(TestCanvas):
     """Test case for plotting the course of a virtual projectile on a canvas."""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__('plotting.ppm', *args, **kwargs)
 
     def test_plotting(self):
         """Test plotting the course of a virtual projectile on a canvas."""
@@ -71,9 +73,4 @@ class TestPlotting(unittest.TestCase):
         canvas = pyray.Canvas(900, 550)
         run(canvas, env, proj)
 
-        ppm = canvas.ppm()
-
-        golden_file_path = (f'{os.path.dirname(__file__)}'
-                            '/golden_files/plotting.ppm')
-        with open(golden_file_path) as golden_file:
-            self.assertEqual(golden_file.read(), ppm)
+        self.assertCanvas(canvas)

@@ -5,21 +5,21 @@
 
 
 import math
-import os
-import unittest
-
 import pyray
+from .test_canvas import TestCanvas
 
 
 RED: pyray.Color = pyray.Color(1.0, 0.0, 0.0)
 
 
-class TestClock(unittest.TestCase):
+class TestClock(TestCanvas):
     """Test case for picturing an analog clock."""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__('clock.ppm', *args, **kwargs)
 
     def test_clock(self):
         """Test picturing an analog clock."""
-
         canvas_pixels = 100
         canvas = pyray.Canvas(canvas_pixels, canvas_pixels)
 
@@ -38,8 +38,4 @@ class TestClock(unittest.TestCase):
             point = transform.apply(twelve)
             canvas[round(point.x), round(point.z)] = RED
 
-        ppm = canvas.ppm()
-
-        golden_file_path = f'{os.path.dirname(__file__)}/golden_files/clock.ppm'
-        with open(golden_file_path) as golden_file:
-            self.assertEqual(golden_file.read(), ppm)
+        self.assertCanvas(canvas)
