@@ -31,7 +31,7 @@ class Sphere:
     @property
     def inverse_transform(self) -> Matrix:
         """The sphere's inversed transformation matrix."""
-        return self.transform.inverse()
+        return self.transform.inversed()
 
     def translate(self, x: float, y: float, z: float):
         """Translate the sphere."""

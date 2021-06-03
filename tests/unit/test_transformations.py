@@ -26,7 +26,7 @@ class TestTransformations(TestPyray):
     def test_inverse_translation(self):
         """Test multiplying by the inverse of a translation matrix."""
         transform = pyray.translation(5.0, -3.0, 2.0)
-        inv = transform.inverse()
+        inv = transform.inversed()
         p = pyray.point(-3.0, 4.0, 5.0)
         self.assertTuplesAlmostEqual(pyray.point(-8.0, 7.0, 3.0), inv * p)
 
@@ -47,7 +47,7 @@ class TestTransformations(TestPyray):
     def test_inverse_scaling(self):
         """Test multiplying by the inverse of a scaling matrix."""
         transform = pyray.scaling(2.0, 3.0, 4.0)
-        inv = transform.inverse()
+        inv = transform.inversed()
         v = pyray.vector(-4.0, 6.0, 8.0)
         self.assertTuplesAlmostEqual(pyray.vector(-2.0, 2.0, 2.0),
                                      inv * v)
@@ -101,7 +101,7 @@ class TestTransformations(TestPyray):
         """
         p = pyray.point(0.0, 1.0, 0.0)
         half_quarter = pyray.rotation_x(math.pi / 4.0)
-        inv = half_quarter.inverse()
+        inv = half_quarter.inversed()
         self.assertTuplesAlmostEqual(
             pyray.point(0.0, math.sqrt(2.0) / 2.0, -math.sqrt(2.0) / 2.0),
             inv * p)

@@ -230,7 +230,7 @@ class TestMatrixInversion(TestPyray):
                              -0.80827, -1.45677, -0.44361, 0.52068,
                              -0.07895, -0.22368, -0.05263, 0.19737,
                              -0.52256, -0.81391, -0.30075, 0.30639]),
-            a.inverse())
+            a.inversed())
 
     def test_inverse_2(self):
         """Test calculating the inverse of another matrix."""
@@ -243,7 +243,7 @@ class TestMatrixInversion(TestPyray):
                              -0.07692, 0.12308, 0.02564, 0.03077,
                              0.35897, 0.35897, 0.43590, 0.92308,
                              -0.69231, -0.69231, -0.76923, -1.92308]),
-            a.inverse())
+            a.inversed())
 
     def test_inverse_3(self):
         """Test calculating the inverse of a third matrix."""
@@ -256,7 +256,7 @@ class TestMatrixInversion(TestPyray):
                              -0.07778,  0.03333, 0.36667, -0.33333,
                              -0.02901, -0.14630, -0.10926, 0.12963,
                              0.17778,  0.06667, -0.26667, 0.33333]),
-            a.inverse())
+            a.inversed())
 
     def test_multiplying_product_by_inverse(self):
         """Test multiplying a product by its inverse."""
@@ -269,4 +269,4 @@ class TestMatrixInversion(TestPyray):
                              7.0, 0.0, 5.0, 4.0,
                              6.0, -2.0, 0.0, 5.0])
         c = a * b
-        self.assertMatricesAlmostEqual(a, c * b.inverse())
+        self.assertMatricesAlmostEqual(a, c * b.inversed())

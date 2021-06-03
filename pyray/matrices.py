@@ -171,7 +171,7 @@ class Matrix():
         """Return whether the matrix is invertible."""
         return self.determinant() != 0.0
 
-    def inverse(self) -> Matrix:
+    def inversed(self) -> Matrix:
         """Return the inverse of the matrix.
 
         Raises `NotInvertibleError` if the matrix is not invertible.
