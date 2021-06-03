@@ -116,7 +116,9 @@ class Tuple:
 
 
 class TupleTypeMismatchError(Exception):
-    """Raised when a point was supplied when a vector was expected."""
+    """Raised when a point was supplied when a vector was expected or vice
+    versa.
+    """
 
 
 def point(x: float, y: float, z: float) -> Tuple:

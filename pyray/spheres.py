@@ -8,12 +8,13 @@ import math
 from typing import Tuple as Pair
 
 from .intersections import Intersection
+from .matrices import Matrix
 from .rays import Ray
 from .transformations import Transformation
 from .transformations import translation, scaling
 from .transformations import rotation_x, rotation_y, rotation_z
 from .transformations import shearing
-from .tuples import point
+from .tuples import Tuple, TupleTypeMismatchError, point
 
 
 class Sphere:
@@ -23,34 +24,39 @@ class Sphere:
         self._transformation = Transformation()
 
     @property
-    def transformation(self) -> Transformation:
-        """The sphere's transformation."""
-        return self._transformation
+    def transform(self) -> Matrix:
+        """The sphere's transformation matrix."""
+        return self._transformation.matrix
+
+    @property
+    def inverse_transform(self) -> Matrix:
+        """The sphere's inversed transformation matrix."""
+        return self.transform.inverse()
 
     def translate(self, x: float, y: float, z: float):
         """Translate the sphere."""
         transform = translation(x, y, z)
-        self.transformation.add(transform)
+        self._transformation.add(transform)
 
     def scale(self, x: float, y: float, z: float):
         """Scale the sphere."""
         transform = scaling(x, y, z)
-        self.transformation.add(transform)
+        self._transformation.add(transform)
 
     def rotate_x(self, r: float):
         """Rotate the sphere around the x axis."""
         transform = rotation_x(r)
-        self.transformation.add(transform)
+        self._transformation.add(transform)
 
     def rotate_y(self, r: float):
         """Rotate the sphere around the y axis."""
         transform = rotation_y(r)
-        self.transformation.add(transform)
+        self._transformation.add(transform)
 
     def rotate_z(self, r: float):
         """Rotate the sphere around the z axis."""
         transform = rotation_z(r)
-        self.transformation.add(transform)
+        self._transformation.add(transform)
 
     def shear(self,
               x: Pair[float, float] = (0.0, 0.0),
@@ -58,11 +64,11 @@ class Sphere:
               z: Pair[float, float] = (0.0, 0.0)):
         """Shear the sphere."""
         transform = shearing(x, y, z)
-        self.transformation.add(transform)
+        self._transformation.add(transform)
 
     def intersections(self, ray: Ray) -> Sequence[Intersection]:
         """Return the intersections of a given ray with the sphere."""
-        ray = ray.transformed(self.transformation.matrix.inverse())
+        ray = ray.transformed(self.inverse_transform)
         sphere_to_ray = ray.origin - point(0.0, 0.0, 0.0)
 
         a = ray.direction.dot(ray.direction)
@@ -78,3 +84,14 @@ class Sphere:
         t2 = (-b + math.sqrt(discriminant)) / (2.0 * a)
 
         return (Intersection(t1, self), Intersection(t2, self))
+
+    def normal_at(self, world_point: Tuple) -> Tuple:
+        """Return the normal on the sphere at a given point."""
+        if not world_point.is_point():
+            raise TupleTypeMismatchError
+
+        object_point = self.inverse_transform * world_point
+        object_normal = object_point - point(0.0, 0.0, 0.0)
+        world_normal = self.inverse_transform.transposed() * object_normal
+        world_normal.w = 0.0
+        return world_normal.normalized()
