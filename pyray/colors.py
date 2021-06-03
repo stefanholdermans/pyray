@@ -56,3 +56,8 @@ class Color:
 
     def __rmul__(self, scalar):
         return self.__mul__(scalar)
+
+
+RED: Color = Color(1.0, 0.0, 0.0)
+GREEN: Color = Color(0.0, 1.0, 0.0)
+BLUE: Color = Color(0.0, 0.0, 1.0)

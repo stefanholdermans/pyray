@@ -4,7 +4,7 @@
 """A photorealistic 3D renderer."""
 
 from .canvases import Canvas
-from .colors import Color
+from .colors import Color, RED, GREEN, BLUE
 from .intersections import Intersection, intersections, hit
 from .matrices import Matrix, OrderError, NotInvertibleError
 from .matrices import matrix2x2, matrix3x3, matrix4x4

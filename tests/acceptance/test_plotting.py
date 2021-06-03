@@ -11,9 +11,6 @@ import pyray
 from .test_canvas import TestCanvas
 
 
-RED: pyray.Color = pyray.Color(1.0, 0.0, 0.0)
-
-
 class Environment(NamedTuple):
     # pylint: disable=inherit-non-class
     # pylint: disable=too-few-public-methods
@@ -40,7 +37,7 @@ class Projectile:
         """Plot the projectile on a canvas."""
         x = round(self.position.x)
         y = c.height - round(self.position.y)
-        c[x, y] = RED
+        c[x, y] = pyray.RED
 
 
 def run(c: pyray.Canvas, env: Environment, proj: Projectile):

@@ -9,9 +9,6 @@ import pyray
 from .test_canvas import TestCanvas
 
 
-RED: pyray.Color = pyray.Color(1.0, 0.0, 0.0)
-
-
 class TestClock(TestCanvas):
     """Test case for picturing an analog clock."""
 
@@ -36,6 +33,6 @@ class TestClock(TestCanvas):
             transform.add(scaling)
             transform.add(translation)
             point = transform.apply(twelve)
-            canvas[round(point.x), round(point.z)] = RED
+            canvas[round(point.x), round(point.z)] = pyray.RED
 
         self.assertCanvas(canvas)

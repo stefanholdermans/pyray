@@ -8,9 +8,6 @@ import pyray
 from .test_canvas import TestCanvas
 
 
-RED: pyray.Color = pyray.Color(1.0, 0.0, 0.0)
-
-
 class TestSilhouette(TestCanvas):
     """Test case for casting rays at a sphere and drawing the picture to a
     canvas.
@@ -41,6 +38,6 @@ class TestSilhouette(TestCanvas):
 
                 r = pyray.Ray(ray_origin, (position - ray_origin).normalized())
                 if pyray.hit(shape.intersections(r)):
-                    canvas[x, y] = RED
+                    canvas[x, y] = pyray.RED
 
         self.assertCanvas(canvas)
