@@ -8,7 +8,7 @@ from __future__ import annotations
 import textwrap
 from typing import Iterator, List, Tuple as Pair
 
-from .colors import Color
+from .colors import Color, BLACK
 
 
 class Canvas:
@@ -18,7 +18,7 @@ class Canvas:
         self.width = width
         self.height = height
 
-        self._pixels = {(x, y): Color(0.0, 0.0, 0.0)
+        self._pixels = {(x, y): BLACK
                         for x in range(width)
                         for y in range(height)}
 

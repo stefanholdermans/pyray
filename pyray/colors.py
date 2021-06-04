@@ -61,3 +61,5 @@ class Color:
 RED: Color = Color(1.0, 0.0, 0.0)
 GREEN: Color = Color(0.0, 1.0, 0.0)
 BLUE: Color = Color(0.0, 0.0, 1.0)
+BLACK: Color = Color(0.0, 0.0, 0.0)
+WHITE: Color = Color(1.0, 1.0, 1.0)

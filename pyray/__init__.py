@@ -4,8 +4,10 @@
 """A photorealistic 3D renderer."""
 
 from .canvases import Canvas
-from .colors import Color, RED, GREEN, BLUE
+from .colors import Color, RED, GREEN, BLUE, BLACK, WHITE
 from .intersections import Intersection, intersections, hit
+from .lights import PointLight
+from .materials import Material
 from .matrices import Matrix, OrderError, NotInvertibleError
 from .matrices import matrix2x2, matrix3x3, matrix4x4
 from .rays import Ray

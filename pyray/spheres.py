@@ -8,6 +8,7 @@ import math
 from typing import Tuple as Pair
 
 from .intersections import Intersection
+from .materials import Material
 from .matrices import Matrix
 from .rays import Ray
 from .transformations import Transformation
@@ -22,6 +23,7 @@ class Sphere:
 
     def __init__(self):
         self._transformation = Transformation()
+        self.material = Material()
 
     @property
     def transform(self) -> Matrix:

@@ -148,3 +148,17 @@ class TestSpheres(TestPyray):
         n = s.normal_at(
             pyray.point(0.0, math.sqrt(2.0) / 2.0, -math.sqrt(2.0) / 2.0))
         self.assertTuplesAlmostEqual(pyray.vector(0.0, 0.97014, -0.24254), n)
+
+    def test_sphere_has_default_material(self):
+        """Assert that a sphere has a default material."""
+        s = pyray.Sphere()
+        m = s.material
+        self.assertEqual(pyray.Material(), m)
+
+    def test_assign_material_to_sphere(self):
+        """Assert that a sphere may be assigned a material."""
+        s = pyray.Sphere()
+        m = pyray.Material()
+        m.ambient = 1.0
+        s.material = m
+        self.assertEqual(m, s.material)
