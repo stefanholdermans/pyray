@@ -11,17 +11,22 @@ from .test_pyray import TestPyray
 class TestMaterials(TestPyray):
     """Test case for materials."""
 
+    def test_default_material(self):
+        """Test the default material."""
+        m = pyray.Material()
+        self.assertEqual(pyray.WHITE, m.color)
+        self.assertEqual(0.1, m.ambient)
+        self.assertEqual(0.9, m.diffuse)
+        self.assertEqual(0.9, m.specular)
+        self.assertEqual(200.0, m.shininess)
+
+
+class TestLighting(TestPyray):
+    """Test case for lighting."""
+
     def setUp(self):
         self._material = pyray.Material()
         self._position = pyray.point(0.0, 0.0, 0.0)
-
-    def test_default_material(self):
-        """Test the default material."""
-        self.assertEqual(pyray.WHITE, self._material.color)
-        self.assertEqual(0.1, self._material.ambient)
-        self.assertEqual(0.9, self._material.diffuse)
-        self.assertEqual(0.9, self._material.specular)
-        self.assertEqual(200.0, self._material.shininess)
 
     def test_lighting_with_eye_between_light_and_surface(self):
         """Test lighting with the eye between the light and the surface."""
