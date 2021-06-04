@@ -17,6 +17,26 @@ class TestColors(TestPyray):
         self.assertEqual(0.4, c.green)
         self.assertEqual(1.7, c.blue)
 
+    def test_red(self):
+        """Test the color red."""
+        self.assertEqual(pyray.Color(1.0, 0.0, 0.0), pyray.RED)
+
+    def test_green(self):
+        """Test the color green."""
+        self.assertEqual(pyray.Color(0.0, 1.0, 0.0), pyray.GREEN)
+
+    def test_blue(self):
+        """Test the color blue."""
+        self.assertEqual(pyray.Color(0.0, 0.0, 1.0), pyray.BLUE)
+
+    def test_black(self):
+        """Test the color black."""
+        self.assertEqual(pyray.Color(0.0, 0.0, 0.0), pyray.BLACK)
+
+    def test_white(self):
+        """Test the color white."""
+        self.assertEqual(pyray.Color(1.0, 1.0, 1.0), pyray.WHITE)
+
 
 class TestColorOperations(TestPyray):
     """Test case for color operations."""
