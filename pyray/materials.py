@@ -6,7 +6,7 @@
 from dataclasses import dataclass
 from .colors import Color, BLACK, WHITE
 from .lights import PointLight
-from .tuples import Tuple
+from .tuples import Tuple, TupleTypeMismatchError
 
 
 @dataclass
@@ -24,7 +24,13 @@ class Material:
     ) -> Color:
         """Illuminate the material at a specified point for a given light source
         and given eye and normal vectors.
+
+        Raises `TupleTypeMismatchError` if `point` is not a point or if any of
+        `eyev` and `normalv` are not vectors.
         """
+        if not (point.is_point() or eyev.is_vector() or normalv.is_vector()):
+            raise TupleTypeMismatchError
+
         effective_color = self.color * light.intensity
 
         ambient = effective_color * self.ambient
