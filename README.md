@@ -47,7 +47,7 @@ Bookshelf, 2019).
 ### Light and Shading
 - [x] ~~Surface normals~~
 - [x] ~~Vector reflection~~
-- [ ] Phong reflection model
+- [x] ~~Phong reflection model~~
 - [ ] Demo
 
 ### Making a Scene
